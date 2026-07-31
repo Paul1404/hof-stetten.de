@@ -97,17 +97,6 @@ main { flex: 1 0 auto; }
 
 /* ---- Type scale --------------------------------------------------------- */
 
-/* One word, so it is set as a nameplate: sized to run the full measure
-   rather than floating at half width with paper stranded beside it. */
-.t-display {
-  font-size: clamp(3.4rem, 19vw, 15.25rem);
-  font-weight: 350;
-  line-height: 0.84;
-  letter-spacing: -0.05em;
-  hyphens: none;
-  overflow-wrap: normal;
-}
-
 .t-title {
   font-size: clamp(1.7rem, 3.2vw, 2.5rem);
   font-weight: 400;
@@ -151,23 +140,106 @@ main { flex: 1 0 auto; }
   text-transform: uppercase;
 }
 
-/* The hero photograph is atmosphere, not a picture to look at: a paper veil
-   drops it back far enough that type sits on it at full contrast. */
-.hero-veil {
-  background: linear-gradient(
-    172deg,
-    color-mix(in srgb, var(--color-paper) 88%, transparent) 0%,
-    color-mix(in srgb, var(--color-paper) 72%, transparent) 46%,
-    color-mix(in srgb, var(--color-paper) 90%, transparent) 100%
-  );
+/* ---- Hero --------------------------------------------------------------- */
+
+/* The aerial is the hero's only visual idea. Type and landscape share one
+   cinematic field; contrast comes from a local tonal gradient, not a veil. */
+.hero {
+  position: relative;
+  min-height: clamp(38rem, calc(100svh - 3.5rem), 54rem);
+  overflow: hidden;
+  color: var(--color-paper);
+  background: var(--color-forest);
 }
 
-.hero-card {
-  border: 1px solid color-mix(in srgb, var(--color-line) 75%, transparent);
-  border-radius: 1rem;
-  background: color-mix(in srgb, var(--color-paper) 82%, transparent);
-  box-shadow: 0 1px 2px rgb(27 30 28 / 0.03), 0 12px 34px -18px rgb(27 30 28 / 0.28);
-  backdrop-filter: blur(10px);
+.hero-image {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-image img {
+  object-position: 50% 50%;
+  transform: scale(1.001);
+}
+
+.hero-scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgb(15 28 20 / 0.04) 26%, rgb(15 28 20 / 0.15) 55%, rgb(15 28 20 / 0.82) 100%),
+    linear-gradient(90deg, rgb(15 28 20 / 0.22), transparent 62%);
+}
+
+.hero-credit {
+  position: absolute;
+  z-index: 2;
+  right: max(1rem, calc((100% - 64rem) / 2));
+  bottom: 1rem;
+  max-width: calc(100% - 2rem);
+  padding: 0.2rem 0;
+}
+
+.hero-title-wrap {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-height: inherit;
+  align-items: flex-end;
+  padding-block: clamp(3.75rem, 7vw, 6rem);
+}
+
+.hero-title-panel {
+  width: min(100%, 58rem);
+}
+
+.hero-title {
+  color: var(--color-paper);
+  font-size: clamp(6rem, 12vw, 11rem);
+  font-weight: 320;
+  line-height: 0.78;
+  letter-spacing: -0.055em;
+  text-shadow: 0 0.08em 0.4em rgb(8 18 12 / 0.22);
+  white-space: nowrap;
+}
+
+.hero-subtitle {
+  max-width: 32ch;
+  margin-top: 1.75rem;
+  color: rgb(245 242 234 / 0.82);
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 1.7vw, 1.45rem);
+  font-weight: 360;
+  line-height: 1.3;
+}
+
+@media (max-width: 47.999rem) {
+  .hero { min-height: clamp(34rem, calc(100svh - 3.5rem), 44rem); }
+  .hero-image img { object-position: 57% 50%; }
+  .hero-scrim {
+    background: linear-gradient(180deg, rgb(15 28 20 / 0.03) 20%, rgb(15 28 20 / 0.16) 50%, rgb(15 28 20 / 0.88) 100%);
+  }
+  .hero-credit { top: 0.65rem; right: 0.75rem; bottom: auto; max-width: calc(100% - 1.5rem); }
+  .hero-title-wrap { padding-block: 3rem; }
+  .hero-title {
+    font-size: clamp(3.65rem, 18vw, 5.5rem);
+    line-height: 0.82;
+  }
+  .hero-subtitle { margin-top: 1.125rem; font-size: 1.125rem; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-image img { animation: hero-image-in 1.4s cubic-bezier(.2,.65,.25,1) both; }
+  .hero-title-panel { animation: hero-copy-in 900ms 180ms cubic-bezier(.2,.65,.25,1) both; }
+}
+
+@keyframes hero-image-in {
+  from { opacity: 0.72; transform: scale(1.035); }
+  to { opacity: 1; transform: scale(1.001); }
+}
+
+@keyframes hero-copy-in {
+  from { opacity: 0; transform: translateY(1.5rem); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Years, house numbers, counts. Content, so it is set in ink, not in accent. */

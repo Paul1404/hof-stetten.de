@@ -146,13 +146,6 @@ export const SOURCES = [
     href: "https://www.lfu.bayern.de/wasser/gewaessernachbarschaften/themen/wrrl/doc/arbeitshilfe.pdf",
   },
   {
-    id: "luftbild-dop20",
-    title: "Digitales Orthophoto DOP20, Bayerische Vermessungsverwaltung",
-    detail:
-      "Amtliches Luftbild aus dem Bildflug vom 14. August 2025 (Bildflug-Nr. 125010/0), abgerufen über den offenen Kartendienst der Bayerischen Vermessungsverwaltung. Für das Auftaktbild auf einen Ausschnitt um Hofstetten zugeschnitten und um 40 Grad gedreht, sodass die Dorfstraße waagerecht durchs Bild verläuft.",
-    href: "https://geodaten.bayern.de/opengeodata/OpenDataDetail.html?pn=dop20",
-  },
-  {
     id: "einwohner-historisch",
     title: "Bavarikon: Hofstetten",
     detail: "Historische Einwohnerzahlen für den Gemeindeteil Hofstetten von 1871 bis 1987.",
@@ -174,13 +167,12 @@ export const SOURCES = [
 
 export const PHOTO_CREDITS = [
   {
-    file: "hofstetten-luftbild.jpg",
+    file: "hofstetten-luftbild-herbst.webp",
     title: "Luftbild von Hofstetten",
-    author: "Bayerische Vermessungsverwaltung",
-    license: "CC BY 4.0",
-    source: "https://geodaten.bayern.de/opengeodata/OpenDataDetail.html?pn=dop20",
-    sourceLabel: "Bayerische Vermessungsverwaltung",
-    licenseUrl: "https://creativecommons.org/licenses/by/4.0/deed.de",
+    author: "veröffentlicht durch die Stadt Königsberg i.Bay.",
+    license: "nicht ausgewiesen",
+    source: "https://koenigsberg.de/home-rathaus-gemeinde/stadt-gemeinde/stadt-und-stadtteile/hofstetten-mit-buehl/",
+    sourceLabel: "Stadt Königsberg i.Bay.",
   },
   {
     file: "st-anna.jpg",

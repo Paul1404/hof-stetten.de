@@ -17,5 +17,5 @@ const {
 } = Astro.props;
 ---
 <a href={href} rel="external license" class:list={["inline-flex min-h-6 items-center text-[0.6875rem] tracking-[0.04em] underline decoration-transparent underline-offset-4 hover:decoration-current", dark ? "text-white/45 hover:text-white/80" : "text-[color:var(--color-muted)] hover:text-[color:var(--color-ink)]", className]}>
-  {label}: {author}, {license}
+  {label}: {author}{license && `, ${license}`}
 </a>

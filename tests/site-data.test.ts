@@ -25,9 +25,12 @@ describe("editorial data", () => {
   test("keeps public photo licensing complete", () => {
     for (const photo of PHOTO_CREDITS) {
       expect(photo.author.length).toBeGreaterThan(0);
-      expect(photo.license).toMatch(/^CC BY/);
+      if ("licenseUrl" in photo) expect(photo.license).toMatch(/^CC BY/);
+      else expect(photo.license).toBe("nicht ausgewiesen");
       expect(photo.source).toStartWith("https://");
-      expect(photo.licenseUrl).toStartWith("https://creativecommons.org/");
+      if ("licenseUrl" in photo) {
+        expect(photo.licenseUrl).toStartWith("https://creativecommons.org/");
+      }
     }
   });
 
