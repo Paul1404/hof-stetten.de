@@ -69,6 +69,17 @@ Bun.serve({
     const url = new URL(req.url);
     const pathname = decodeURIComponent(url.pathname);
 
+    if (url.hostname === "www.hof-stetten.de") {
+      return new Response(null, {
+        status: 308,
+        headers: {
+          ...SECURITY_HEADERS,
+          "cache-control": CACHE_DAY,
+          location: `https://hof-stetten.de${url.pathname}${url.search}`,
+        },
+      });
+    }
+
     const file = await resolve(pathname);
     if (file) {
       return new Response(file, { headers: headersFor(pathname) });
