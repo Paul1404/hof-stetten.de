@@ -58,7 +58,7 @@ Resources:
             - GET
             - HEAD
           Compress: true
-          OriginRequestPolicyId: 216adef6-5c7f-47e4-b989-5492eafa07d3
+          OriginRequestPolicyId: b689b0a8-53d0-40ab-baf2-68738e2966ac
           TargetOriginId: RailwayOrigin
           ViewerProtocolPolicy: redirect-to-https
         Enabled: true
@@ -108,7 +108,6 @@ Resources:
           TTL: 300
           ResourceRecords:
             - !Sub '"${WwwRailwayVerification}"'
-
 Outputs:
   DistributionId:
     Description: CloudFront distribution ID for the apex domain
