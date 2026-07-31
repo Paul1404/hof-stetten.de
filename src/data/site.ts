@@ -63,9 +63,9 @@ export const POPULATION = [
 
 export const VILLAGE_YEAR = [
   { date: "30. April", title: "Maibaumaufstellen", detail: "in der Dorfmitte" },
-  { date: "Ende Mai", title: "Wallfahrt", detail: "zum Zeiler Käppele, 2026 am 31. Mai" },
-  { date: "Mitte Juli", title: "Brunnenfest", detail: "2026 am 18. und 19. Juli" },
-  { date: "26. Juli", title: "Annatag", detail: "Prozession bei St. Anna" },
+  { date: "Im Frühjahr", title: "Wallfahrt", detail: "zum Zeiler Käppele" },
+  { date: "Mitte Juli", title: "Brunnenfest", detail: "in Hofstetten" },
+  { date: "Rund um St. Anna", title: "Annatag", detail: "mit Prozession an der Kapelle" },
 ] as const;
 
 export const SOURCES = [
@@ -94,7 +94,7 @@ export const SOURCES = [
   {
     id: "blaskapelle",
     title: "Blaskapelle Hofstetten e.V.",
-    detail: "Vereinsseite und aktueller Veranstaltungskalender.",
+    detail: "Vereinsseite mit Angaben zur Blaskapelle und ihrem Wirken im Ort.",
     href: "https://www.blaskapelle-hofstetten.de/",
   },
   {
@@ -162,12 +162,6 @@ export const SOURCES = [
     title: "Stadt Königsberg i.Bay.: Spielplätze",
     detail: "Amtliche Beschreibung des Spielplatzes neben dem ehemaligen Schulhaus in Hofstetten.",
     href: "https://koenigsberg.de/home-tourismus-freizeit/aktiv-und-freizeit/spielplaetze/",
-  },
-  {
-    id: "termine-2026",
-    title: "Blaskapelle Hofstetten: Termine 2026",
-    detail: "Jahreskalender mit Wallfahrt, Brunnenfest, Annatag, Ewiger Anbetung und Gottesdiensten.",
-    href: "https://www.blaskapelle-hofstetten.de/termine.html",
   },
 ] as const;
 

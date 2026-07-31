@@ -28,8 +28,11 @@ describe("editorial data", () => {
     }
   });
 
-  test("keeps the village year compact", () => {
+  test("keeps the village year compact and evergreen", () => {
     expect(VILLAGE_YEAR.length).toBeGreaterThanOrEqual(4);
-    for (const entry of VILLAGE_YEAR) expect(entry.title.length).toBeGreaterThan(0);
+    for (const entry of VILLAGE_YEAR) {
+      expect(entry.title.length).toBeGreaterThan(0);
+      expect(`${entry.date} ${entry.detail}`).not.toMatch(/20\d{2}/);
+    }
   });
 });
