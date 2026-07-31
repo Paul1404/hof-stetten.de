@@ -1,10 +1,7 @@
----
-import VillageMark from "./VillageMark.astro";
----
 <footer class="bg-[color:var(--color-forest)] py-12 text-[color:var(--color-paper)] sm:py-14">
   <div class="shell">
     <div class="marginal">
-      <VillageMark class="w-28 text-[color:var(--color-brass)]" />
+      <div aria-hidden="true"></div>
       <div class="grid gap-8 md:grid-cols-[1fr_auto] md:items-end">
         <div>
           <p class="font-serif text-2xl">Hofstetten</p>
@@ -16,7 +13,7 @@ import VillageMark from "./VillageMark.astro";
             <a class="link-line inline-flex min-h-8 items-center text-white/80 hover:text-white" href="/impressum">Impressum</a>
             <a class="link-line inline-flex min-h-8 items-center text-white/80 hover:text-white" href="/datenschutz">Datenschutz</a>
           </div>
-          <p class="t-label !text-white/40">© {new Date().getFullYear()} hof-stetten.de · 97486 Haßberge</p>
+          <p class="t-label !text-white/40">© {new Date().getFullYear()} hof-stetten.de · 97486 Königsberg i.Bay.</p>
         </div>
       </div>
     </div>

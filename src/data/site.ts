@@ -33,22 +33,10 @@ export const HISTORY = [
     sourceId: "visitation-1870",
   },
   {
-    year: "1965",
-    title: "Gründung der Blaskapelle",
-    text: "Die Blaskapelle Hofstetten wird gegründet. 2025 feierte der Verein sein 60-jähriges Bestehen.",
-    sourceId: "blaskapelle",
-  },
-  {
     year: "1972",
     title: "Eingemeindung nach Königsberg",
     text: "Die bis dahin selbstständige Gemeinde Hofstetten wird am 1. Juli nach Königsberg i.Bay. eingegliedert. Der frühere Landkreis Ebern geht im Landkreis Haßberge auf.",
     sourceId: "gemeindehandbuch",
-  },
-  {
-    year: "2010",
-    title: "Skulptur vor St. Anna",
-    text: "Vor der Kapelle wird eine Sandsteinskulptur der Heiligen Familie aufgestellt.",
-    sourceId: "stadt-hofstetten",
   },
 ] as const;
 
@@ -136,7 +124,7 @@ export const SOURCES = [
   {
     id: "stadt-hofstetten",
     title: "Stadt Königsberg i.Bay.: Hofstetten mit Bühl",
-    detail: "Amtliche Ortsbeschreibung mit Angaben zu Straßendorf, Feuerwehr, Förderverein, Dorfjahr, Dorfzeichen und ehemaliger Schule.",
+    detail: "Amtliche Ortsbeschreibung mit Angaben zu Straßendorf, Feuerwehr, Förderverein, Dorfjahr, Dorfwappen und ehemaliger Schule.",
     href: "https://koenigsberg.de/home-rathaus-gemeinde/stadt-gemeinde/stadt-und-stadtteile/hofstetten-mit-buehl/",
   },
   {
@@ -189,15 +177,6 @@ export const PHOTO_CREDITS = [
     author: "Stephan van Helden",
     license: "CC BY-SA 4.0",
     source: "https://commons.wikimedia.org/wiki/File:D-6-74-164-112_Kapelle_St_Anna_Hofstetten,_Portal.jpg",
-    sourceLabel: "Wikimedia Commons",
-    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
-  },
-  {
-    file: "heilige-familie.jpg",
-    title: "Statue der Heiligen Familie",
-    author: "Stephan van Helden",
-    license: "CC BY-SA 4.0",
-    source: "https://commons.wikimedia.org/wiki/File:Statue_der_Heiligen_Familie_vor_der_Kirche_St_Anna_in_Hofstetten.jpg",
     sourceLabel: "Wikimedia Commons",
     licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
   },

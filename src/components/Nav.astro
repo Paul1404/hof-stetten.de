@@ -1,20 +1,19 @@
 ---
-import VillageMark from "./VillageMark.astro";
-
 const LINKS = [
   { href: "/#geschichte", label: "Geschichte" },
-  { href: "/#st-anna", label: "St. Anna" },
+  { href: "/#st-anna", label: "Kapelle" },
   { href: "/#landschaft", label: "Landschaft" },
-  { href: "/#dorfleben", label: "Dorfleben" },
+  { href: "/#dorfleben", label: "Im Dorf" },
   { href: "/quellen", label: "Quellen" },
 ];
+
+const isHome = Astro.url.pathname === "/";
 ---
 <header class="sticky top-0 z-40 border-b border-[color:var(--color-line)] bg-[color:var(--color-paper)]">
-  <nav class="shell flex h-14 items-center justify-between gap-6" aria-label="Hauptnavigation">
-    <a href="/" class="flex min-h-11 items-baseline gap-3" aria-label="Hofstetten, Startseite">
-      <span class="font-serif text-[1.05rem]">Hofstetten</span>
-      <span class="t-label hidden sm:inline">Haßberge</span>
-    </a>
+  <nav class="shell flex h-14 items-center justify-end gap-6" aria-label="Hauptnavigation">
+    {!isHome && (
+      <a href="/" class="mr-auto flex min-h-11 items-center font-serif text-[1.05rem]" aria-label="Hofstetten, Startseite">Hofstetten</a>
+    )}
     <div class="hidden items-center gap-7 text-[0.8125rem] text-[color:var(--color-ink-soft)] lg:flex">
       {LINKS.map((link) => (
         <a class="inline-flex min-h-11 items-center underline decoration-transparent underline-offset-[0.35em] hover:text-[color:var(--color-ink)] hover:decoration-current" href={link.href}>{link.label}</a>
@@ -35,8 +34,7 @@ const LINKS = [
 </noscript>
 
 <nav id="mobile-nav" class="fixed inset-0 z-50 overflow-y-auto overscroll-contain bg-[color:var(--color-forest)] px-6 pt-[max(1.25rem,env(safe-area-inset-top))] pb-[max(1.25rem,env(safe-area-inset-bottom))] text-[color:var(--color-paper)] lg:hidden" aria-label="Mobile Navigation" hidden>
-  <div class="flex items-center justify-between">
-    <VillageMark class="w-20 text-[color:var(--color-brass)]" />
+  <div class="flex items-center justify-end">
     <button id="mobile-menu-close" type="button" class="t-label -mr-2 inline-flex min-h-11 items-center justify-center px-2 text-white/70">Schließen</button>
   </div>
   <div class="mt-14 grid font-serif text-[2.25rem] leading-none sm:mt-20 sm:text-5xl">

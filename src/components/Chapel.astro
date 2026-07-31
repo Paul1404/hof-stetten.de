@@ -1,7 +1,7 @@
 ---
 import { Picture } from "astro:assets";
+import chapel from "../assets/images/st-anna.jpg";
 import portal from "../assets/images/st-anna-portal.jpg";
-import statue from "../assets/images/heilige-familie.jpg";
 import PhotoCredit from "./PhotoCredit.astro";
 ---
 <section id="st-anna" class="band scroll-mt-20">
@@ -18,7 +18,17 @@ import PhotoCredit from "./PhotoCredit.astro";
     </div>
 
     <div class="mt-12 grid gap-10 sm:mt-16 lg:grid-cols-12 lg:gap-8">
-      <figure class="lg:col-span-5">
+      <figure class="lg:col-span-7">
+        <div class="photo aspect-[3/2]">
+          <Picture src={chapel} alt="Die Kapelle St. Anna mit Satteldach, Dachreiter und Zwiebelhaube in der Dorfmitte" widths={[640, 960, 1280, 1600]} sizes="(min-width: 1024px) 56vw, 92vw" formats={["avif", "webp"]} quality={76} />
+        </div>
+        <figcaption class="mt-3">
+          <p class="t-note text-[color:var(--color-ink-soft)]">St. Anna in der Hofstettener Dorfmitte.</p>
+          <PhotoCredit class="mt-1" author="Tilman2007" href="https://commons.wikimedia.org/wiki/File:Hofstetten_27_K%C3%B6nigsberg_in_Bayern_20201129_001.jpg" />
+        </figcaption>
+      </figure>
+
+      <figure class="lg:col-span-4 lg:col-start-9 lg:mt-20">
         <div class="photo aspect-[4/5]">
           <Picture src={portal} alt="Das Sandsteinportal von St. Anna mit der Jahreszahl 1744 und dem Relief der Vierzehn Nothelfer" widths={[480, 720, 960]} sizes="(min-width: 1024px) 38vw, 92vw" formats={["avif", "webp"]} quality={75} />
         </div>
@@ -28,15 +38,6 @@ import PhotoCredit from "./PhotoCredit.astro";
         </figcaption>
       </figure>
 
-      <figure class="lg:col-span-6 lg:col-start-7 lg:mt-20">
-        <div class="photo aspect-[4/5]">
-          <Picture src={statue} alt="Sandsteinskulptur der Heiligen Familie vor St. Anna" widths={[640, 960, 1280]} sizes="(min-width: 1024px) 46vw, 92vw" formats={["avif", "webp"]} quality={74} />
-        </div>
-        <figcaption class="mt-3">
-          <p class="t-note text-[color:var(--color-ink-soft)]">Seit 2010 steht die Heilige Familie vor der Kapelle.</p>
-          <PhotoCredit class="mt-1" author="Stephan van Helden" href="https://commons.wikimedia.org/wiki/File:Statue_der_Heiligen_Familie_vor_der_Kirche_St_Anna_in_Hofstetten.jpg" />
-        </figcaption>
-      </figure>
     </div>
   </div>
 </section>
