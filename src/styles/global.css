@@ -97,11 +97,13 @@ main { flex: 1 0 auto; }
 
 /* ---- Type scale --------------------------------------------------------- */
 
+/* One word, so it is set as a nameplate: sized to run the full measure
+   rather than floating at half width with paper stranded beside it. */
 .t-display {
-  font-size: clamp(3.4rem, 12vw, 8rem);
-  font-weight: 370;
-  line-height: 0.86;
-  letter-spacing: -0.045em;
+  font-size: clamp(3.4rem, 19vw, 15.25rem);
+  font-weight: 350;
+  line-height: 0.84;
+  letter-spacing: -0.05em;
   hyphens: none;
   overflow-wrap: normal;
 }
