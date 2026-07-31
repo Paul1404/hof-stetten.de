@@ -1,0 +1,121 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: HTTPS apex delivery for hof-stetten.de with Railway as the origin
+
+Parameters:
+  HostedZoneId:
+    Type: String
+    Description: Route 53 public hosted zone ID for hof-stetten.de
+    AllowedPattern: "^Z[A-Z0-9]+$"
+  DomainName:
+    Type: String
+    Default: hof-stetten.de
+    Description: Apex domain served by CloudFront
+    AllowedPattern: "^[a-z0-9.-]+$"
+  RailwayOriginDomain:
+    Type: String
+    Default: hof-stettende-production.up.railway.app
+    Description: Railway service domain used as the CloudFront origin
+    AllowedPattern: "^[a-z0-9.-]+\\.up\\.railway\\.app$"
+  WwwRailwayTarget:
+    Type: String
+    Default: xsgvluat.up.railway.app
+    Description: Railway CNAME target for www
+    AllowedPattern: "^[a-z0-9]+\\.up\\.railway\\.app$"
+  WwwRailwayVerification:
+    Type: String
+    Default: railway-verify=a816667f0e7e43336e5d37abb47619e004c65abea0f6cd49dd88566da71c2a06
+    Description: Railway ownership verification value for www
+    AllowedPattern: "^railway-verify=[a-f0-9]{64}$"
+
+Resources:
+  ApexCertificate:
+    Type: AWS::CertificateManager::Certificate
+    Properties:
+      DomainName: !Ref DomainName
+      DomainValidationOptions:
+        - DomainName: !Ref DomainName
+          HostedZoneId: !Ref HostedZoneId
+      ValidationMethod: DNS
+
+  ApexDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Aliases:
+          - !Ref DomainName
+        Comment: !Sub "${DomainName} apex to Railway"
+        DefaultCacheBehavior:
+          AllowedMethods:
+            - DELETE
+            - GET
+            - HEAD
+            - OPTIONS
+            - PATCH
+            - POST
+            - PUT
+          CachePolicyId: 4135ea2d-6df8-44a3-9df3-4b5a84be39ad
+          CachedMethods:
+            - GET
+            - HEAD
+          Compress: true
+          OriginRequestPolicyId: 216adef6-5c7f-47e4-b989-5492eafa07d3
+          TargetOriginId: RailwayOrigin
+          ViewerProtocolPolicy: redirect-to-https
+        Enabled: true
+        HttpVersion: http2and3
+        IPV6Enabled: true
+        Origins:
+          - DomainName: !Ref RailwayOriginDomain
+            Id: RailwayOrigin
+            CustomOriginConfig:
+              HTTPPort: 80
+              HTTPSPort: 443
+              OriginKeepaliveTimeout: 5
+              OriginProtocolPolicy: https-only
+              OriginReadTimeout: 30
+              OriginSSLProtocols:
+                - TLSv1.2
+        PriceClass: PriceClass_100
+        ViewerCertificate:
+          AcmCertificateArn: !Ref ApexCertificate
+          MinimumProtocolVersion: TLSv1.2_2021
+          SslSupportMethod: sni-only
+
+  DomainRecords:
+    Type: AWS::Route53::RecordSetGroup
+    Properties:
+      HostedZoneId: !Ref HostedZoneId
+      RecordSets:
+        - Name: !Ref DomainName
+          Type: A
+          AliasTarget:
+            DNSName: !GetAtt ApexDistribution.DomainName
+            EvaluateTargetHealth: false
+            HostedZoneId: Z2FDTNDATAQYW2
+        - Name: !Ref DomainName
+          Type: AAAA
+          AliasTarget:
+            DNSName: !GetAtt ApexDistribution.DomainName
+            EvaluateTargetHealth: false
+            HostedZoneId: Z2FDTNDATAQYW2
+        - Name: !Sub "www.${DomainName}"
+          Type: CNAME
+          TTL: 300
+          ResourceRecords:
+            - !Ref WwwRailwayTarget
+        - Name: !Sub "_railway-verify.www.${DomainName}"
+          Type: TXT
+          TTL: 300
+          ResourceRecords:
+            - !Sub '"${WwwRailwayVerification}"'
+
+Outputs:
+  DistributionId:
+    Description: CloudFront distribution ID for the apex domain
+    Value: !Ref ApexDistribution
+  DistributionDomainName:
+    Description: CloudFront domain used by the Route 53 aliases
+    Value: !GetAtt ApexDistribution.DomainName
+  SiteUrl:
+    Description: Public HTTPS URL
+    Value: !Sub "https://${DomainName}"

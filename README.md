@@ -43,4 +43,4 @@ Die Recherchegrundlagen stehen auf `/quellen`. Alle Fotografien stammen aus Wiki
 
 Das Dockerfile baut die statische Ausgabe und liefert sie über einen kleinen Bun-Server mit Sicherheits- und Cache-Headern aus. Railway prüft `/health.json`.
 
-Die Domain `hof-stetten.de` kann nach dem ersten erfolgreichen Deployment in Route 53 auf die Railway-Domain zeigen.
+Die Anwendung läuft auf Railway. Da Route 53 keinen CNAME am Zonen-Apex unterstützt, liefert CloudFront `hof-stetten.de` per A- und AAAA-Alias aus und verwendet die Railway-Domain als Ursprung. `www.hof-stetten.de` zeigt direkt auf Railway. Die reproduzierbare AWS-Konfiguration liegt in `infra/cloudfront.yaml`.
