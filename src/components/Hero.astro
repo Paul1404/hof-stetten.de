@@ -2,23 +2,51 @@
 import { Picture } from "astro:assets";
 import hero from "../assets/images/hofstetten-luftbild.jpg";
 import PhotoCredit from "./PhotoCredit.astro";
----
-<section>
-  <!-- The village is a line, so it opens as one: a band across the top edge,
-       cropped to the street, with the nameplate running the same full width. -->
-  <figure class="photo aspect-[3/2] sm:aspect-[5/2] lg:aspect-[16/5]">
-    <Picture src={hero} alt="Luftbild von Hofstetten: die Höfe stehen in zwei Reihen entlang der geraden Dorfstraße, ringsum Felder, im Osten Wald" widths={[640, 960, 1280, 1600, 1920, 2500]} sizes="100vw" formats={["avif", "webp"]} quality={78} loading="eager" fetchpriority="high" />
-  </figure>
 
-  <div class="shell pt-7 pb-12 sm:pt-9 sm:pb-16">
-    <h1 class="t-display whitespace-nowrap">Hofstetten</h1>
-    <p class="t-lede mt-7 text-[color:var(--color-ink-soft)]">
-      Ein Kirchdorf in den Haßbergen, auf halbem Weg zwischen Ebern und Haßfurt.
-      Seit 1972 gehört es zu Königsberg i.Bay.
+const FACTS = [
+  { term: "Höhe", value: "398 m" },
+  { term: "Einwohner", value: "138" },
+  { term: "Landkreis", value: "Haßberge" },
+  { term: "Erstnennung", value: "1244" },
+];
+---
+<section class="relative isolate flex min-h-[calc(92svh-3.5rem)] flex-col overflow-hidden">
+  <div class="absolute inset-0 -z-10">
+    <Picture src={hero} alt="" aria-hidden="true" widths={[640, 960, 1280, 1600, 1920, 2500]} sizes="100vw" formats={["avif", "webp"]} quality={78} loading="eager" fetchpriority="high" class="h-full w-full object-cover" />
+    <div class="hero-veil absolute inset-0"></div>
+  </div>
+
+  <div class="shell flex flex-1 flex-col pt-10 pb-8 sm:pt-14 sm:pb-10">
+    <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b border-[color:var(--color-line)] pb-3">
+      <p class="t-label">Haßberge · Bayern</p>
+      <p class="t-label">Seit 1244 urkundlich belegt</p>
+    </div>
+
+    <!-- The name splits where its meaning does: Hof + Stätten, "bei den
+         Hofstätten". The second half carries the accent. -->
+    <h1 class="t-display mt-8 whitespace-nowrap sm:mt-12">Hof<span class="font-light italic text-[color:var(--color-rust)]">stetten</span></h1>
+    <div class="mt-2 h-px w-full max-w-[min(100%,58rem)] bg-[color:var(--color-rust)]/45"></div>
+
+    <p class="mt-8 max-w-xl font-serif text-[clamp(1.15rem,1.9vw,1.5rem)] leading-snug font-light italic text-[color:var(--color-ink-soft)]">
+      Kirchdorf der Stadt Königsberg i.Bay., auf halbem Weg zwischen Ebern und Haßfurt.
     </p>
-    <div class="mt-10 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-t border-[color:var(--color-line)] pt-3">
-      <p class="t-label">398 m über NN · 138 Einwohner</p>
-      <PhotoCredit label="Luftbild" author="Bayerische Vermessungsverwaltung" license="CC BY 4.0" href="https://geodaten.bayern.de/opengeodata/OpenDataDetail.html?pn=dop20" />
+    <p class="t-note mt-5 text-[color:var(--color-muted)]">
+      Die Häuser stehen in zwei Reihen entlang der Dorfstraße. 138 Einwohner, eine
+      spätbarocke Kapelle und ein Bach, der hier entspringt.
+    </p>
+
+    <div class="mt-auto pt-14">
+      <dl class="hero-card grid max-w-2xl grid-cols-2 gap-x-8 gap-y-5 p-5 sm:grid-cols-4 sm:p-6">
+        {FACTS.map((fact) => (
+          <div>
+            <dt class="t-label">{fact.term}</dt>
+            <dd class="t-figure mt-1.5 text-[1.15rem]">{fact.value}</dd>
+          </div>
+        ))}
+      </dl>
+      <div class="mt-4 flex justify-end">
+        <PhotoCredit label="Luftbild" author="Bayerische Vermessungsverwaltung" license="CC BY 4.0" href="https://geodaten.bayern.de/opengeodata/OpenDataDetail.html?pn=dop20" />
+      </div>
     </div>
   </div>
 </section>

@@ -151,6 +151,25 @@ main { flex: 1 0 auto; }
   text-transform: uppercase;
 }
 
+/* The hero photograph is atmosphere, not a picture to look at: a paper veil
+   drops it back far enough that type sits on it at full contrast. */
+.hero-veil {
+  background: linear-gradient(
+    172deg,
+    color-mix(in srgb, var(--color-paper) 88%, transparent) 0%,
+    color-mix(in srgb, var(--color-paper) 72%, transparent) 46%,
+    color-mix(in srgb, var(--color-paper) 90%, transparent) 100%
+  );
+}
+
+.hero-card {
+  border: 1px solid color-mix(in srgb, var(--color-line) 75%, transparent);
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--color-paper) 82%, transparent);
+  box-shadow: 0 1px 2px rgb(27 30 28 / 0.03), 0 12px 34px -18px rgb(27 30 28 / 0.28);
+  backdrop-filter: blur(10px);
+}
+
 /* Years, house numbers, counts. Content, so it is set in ink, not in accent. */
 .t-figure {
   font-family: var(--font-serif);
