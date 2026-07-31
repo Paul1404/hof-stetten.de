@@ -4,29 +4,31 @@ import portal from "../assets/images/st-anna-portal.jpg";
 import statue from "../assets/images/heilige-familie.jpg";
 import PhotoCredit from "./PhotoCredit.astro";
 ---
-<section id="st-anna" class="scroll-mt-16 py-24 sm:py-28">
-  <div class="page-shell grid gap-14 lg:grid-cols-2 lg:gap-20">
-    <div>
-      <p class="eyebrow">St. Anna</p>
-      <h2 class="section-title mt-8">1744 steht über der Tür.</h2>
-      <div class="mt-10 max-w-xl space-y-5 text-[15px] leading-7 text-[color:var(--color-ink-soft)]">
-        <p>Die katholische Kapelle St. Anna steht in der Dorfmitte. Der spätbarocke Saalbau trägt ein Satteldach, darüber sitzt ein achteckiger, schiefergedeckter Dachreiter mit Zwiebelhaube.</p>
-        <p>Über dem Portal versammeln sich die Vierzehn Nothelfer in einem Sandsteinrelief, das die Denkmalliste auf 1751 datiert. Die Kapelle ist unter der Nummer D-6-74-164-112 geschützt.</p>
-      </div>
-      <figure class="mt-12 max-w-md">
-        <div class="photo-frame aspect-[4/5] rounded-t-[6rem]">
+<section id="st-anna" class="scroll-mt-16 py-32 sm:py-44">
+  <div class="page-shell grid gap-14 lg:grid-cols-12 lg:gap-x-8 lg:gap-y-20">
+    <figure class="lg:col-span-5 lg:row-span-2">
+      <p class="mb-5 font-serif text-6xl tracking-[.08em] text-[color:var(--color-brass)] sm:text-7xl">1744</p>
+        <div class="photo-frame aspect-[4/5] border border-[color:var(--color-line)]">
           <Picture src={portal} alt="Das Sandsteinportal von St. Anna mit der Jahreszahl 1744 und dem Relief der Vierzehn Nothelfer" widths={[480, 720, 960]} sizes="(min-width: 1024px) 32vw, 88vw" formats={["avif", "webp"]} quality={75} />
         </div>
         <PhotoCredit author="Stephan van Helden" href="https://commons.wikimedia.org/wiki/File:D-6-74-164-112_Kapelle_St_Anna_Hofstetten,_Portal.jpg" />
-      </figure>
+    </figure>
+
+    <div class="lg:col-span-6 lg:col-start-7 lg:pt-20">
+      <p class="eyebrow">St. Anna</p>
+      <h2 class="section-title mt-8">Die Kapelle in der Dorfmitte.</h2>
+      <div class="mt-10 max-w-xl space-y-6 text-[color:var(--color-ink-soft)]">
+        <p class="prose-copy">Die katholische Kapelle St. Anna steht in der Dorfmitte. Der spätbarocke Saalbau trägt ein Satteldach, darüber sitzt ein achteckiger, schiefergedeckter Dachreiter mit Zwiebelhaube.</p>
+        <p class="prose-copy">Über dem Portal versammeln sich die Vierzehn Nothelfer in einem Sandsteinrelief, das die Denkmalliste auf 1751 datiert. Die Kapelle ist unter der Nummer D-6-74-164-112 geschützt.</p>
+      </div>
     </div>
 
-    <figure class="lg:pt-36">
-      <div class="photo-frame aspect-[3/5] rounded-sm">
+    <figure class="lg:col-span-6 lg:col-start-6">
+      <div class="photo-frame aspect-[4/5] border border-[color:var(--color-line)]">
         <Picture src={statue} alt="Sandsteinskulptur der Heiligen Familie vor St. Anna" widths={[640, 960, 1280]} sizes="(min-width: 1024px) 43vw, 92vw" formats={["avif", "webp"]} quality={74} />
       </div>
       <PhotoCredit author="Stephan van Helden" href="https://commons.wikimedia.org/wiki/File:Statue_der_Heiligen_Familie_vor_der_Kirche_St_Anna_in_Hofstetten.jpg" />
-      <figcaption class="mt-5 border-l border-[color:var(--color-brass)] pl-5 font-serif text-2xl italic leading-tight">Seit 2010 steht die Heilige Familie vor der Kapelle.</figcaption>
+      <figcaption class="mt-5 max-w-sm border-l border-[color:var(--color-brass)] pl-5 font-serif text-2xl leading-tight">Seit 2010 steht die Heilige Familie vor der Kapelle.</figcaption>
     </figure>
   </div>
 </section>

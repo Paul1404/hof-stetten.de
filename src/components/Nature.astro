@@ -11,12 +11,12 @@ import PhotoCredit from "./PhotoCredit.astro";
         <p class="eyebrow !text-[color:var(--color-brass-light)]">Rund um Hofstetten</p>
         <h2 class="section-title mt-8 !text-[color:var(--color-paper)]">Ebelsbach und Mönchsberg.</h2>
       </div>
-      <p class="max-w-lg justify-self-end text-base leading-7 text-white/70">Der Ebelsbach entspringt bei Hofstetten und fließt auf rund 16 Kilometern zum Main. Am Mönchsberg führt ein Waldweg zur sogenannten Wolfsgrube. Der Visitationsbericht von 1870 nennt die hohe Lage der Flur und die geringe Ertragsfähigkeit der Felder. <a class="source-ref source-ref-dark" href="/quellen#ebelsbach-lfu">Quelle</a></p>
+      <p class="prose-copy max-w-lg justify-self-end text-white/70">Der Ebelsbach entspringt bei Hofstetten und fließt auf rund 16 Kilometern zum Main. Am Mönchsberg führt ein Waldweg zur sogenannten Wolfsgrube. Der Visitationsbericht von 1870 nennt die hohe Lage der Flur und die geringe Ertragsfähigkeit der Felder. <a class="source-ref source-ref-dark" href="/quellen#ebelsbach-lfu">Quelle</a></p>
     </div>
 
     <div class="mt-20 grid gap-10 lg:grid-cols-[.82fr_1.18fr] lg:items-end">
       <figure>
-        <div class="photo-frame aspect-[3/4] rounded-sm">
+        <div class="photo-frame aspect-[3/4] border border-white/15">
           <Picture src={forest} alt="Waldweg zur Wolfsgrube am Mönchsberg bei Hofstetten" widths={[640, 960, 1280]} sizes="(min-width: 1024px) 37vw, 92vw" formats={["avif", "webp"]} quality={72} />
         </div>
         <PhotoCredit author="Stephan van Helden" href="https://commons.wikimedia.org/wiki/File:Weg_zur_Wolfsgrube_am_M%C3%B6nchsberg.jpg" dark />

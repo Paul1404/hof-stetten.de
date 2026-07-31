@@ -2,7 +2,7 @@
 import { VILLAGE_YEAR } from "../data/site";
 import SourceRef from "./SourceRef.astro";
 ---
-<section class="bg-[color:var(--color-paper-deep)] py-24 sm:py-28" aria-labelledby="dorfjahr-heading">
+<section class="bg-[color:var(--color-paper-deep)] py-20 sm:py-24" aria-labelledby="dorfjahr-heading">
   <div class="page-shell">
     <div class="grid gap-8 lg:grid-cols-[.72fr_1.28fr] lg:items-end">
       <div>
@@ -14,12 +14,12 @@ import SourceRef from "./SourceRef.astro";
         <SourceRef id="stadt-hofstetten" />
       </div>
     </div>
-    <ol role="list" class="mt-14 grid border-t border-[color:var(--color-line)] sm:grid-cols-2 lg:grid-cols-4">
+    <ol role="list" class="mt-14 grid border-y border-[color:var(--color-line)] sm:grid-cols-2 lg:grid-cols-4">
       {VILLAGE_YEAR.map((entry, index) => (
         <li class:list={["py-7 sm:px-6", index > 0 && "border-t border-[color:var(--color-line)] sm:border-t-0 sm:border-l"]}>
-          <p class="text-[11px] font-bold tracking-[.14em] text-[color:var(--color-rust)] uppercase">{entry.date}</p>
-          <h3 class="mt-4 font-serif text-3xl">{entry.title}</h3>
-          <p class="mt-3 text-sm leading-6 text-[color:var(--color-ink-soft)]">{entry.detail}</p>
+          <h3 class="font-serif text-3xl">{entry.title}</h3>
+          <p class="mt-4 text-[10px] font-bold tracking-[.12em] text-[color:var(--color-rust)] uppercase">{entry.date}</p>
+          <p class="mt-2 text-sm leading-6 text-[color:var(--color-ink-soft)]">{entry.detail}</p>
         </li>
       ))}
     </ol>

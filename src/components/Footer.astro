@@ -1,7 +1,13 @@
+---
+import VillageMark from "./VillageMark.astro";
+---
 <footer class="bg-[color:var(--color-forest)] py-14 text-[color:var(--color-paper)]">
-  <div class="page-shell grid gap-10 md:grid-cols-[1fr_auto] md:items-end">
+  <div class="page-shell">
+    <VillageMark class="w-full max-w-48 text-[color:var(--color-brass-light)]" />
+    <div class="mt-10 grid gap-10 border-t border-white/15 pt-8 md:grid-cols-[1fr_auto] md:items-end">
     <div>
-      <p class="font-serif text-4xl italic text-[color:var(--color-brass-light)]">Hofstetten</p>
+      <p class="font-serif text-3xl text-[color:var(--color-paper)]">Hofstetten</p>
+      <p class="mt-1 text-[10px] tracking-[.12em] text-white/50 uppercase">97486 · Haßberge</p>
     </div>
     <div class="grid gap-3 text-sm md:text-right">
       <div class="grid gap-3 sm:flex sm:flex-wrap sm:gap-x-5 md:justify-end">
@@ -10,6 +16,7 @@
         <a class="link-line inline-flex min-h-8 items-center" href="/datenschutz">Datenschutz</a>
       </div>
       <p class="text-xs text-white/60">© {new Date().getFullYear()} hof-stetten.de</p>
+    </div>
     </div>
   </div>
 </footer>

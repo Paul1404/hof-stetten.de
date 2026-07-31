@@ -1,15 +1,21 @@
-<header class="fixed inset-x-0 top-0 z-40 border-b border-white/10 bg-[color:var(--color-forest)]/92 text-[color:var(--color-paper)] backdrop-blur-md">
+---
+import VillageMark from "./VillageMark.astro";
+---
+<header class="fixed inset-x-0 top-0 z-40 border-b border-white/12 bg-[color:var(--color-forest)] text-[color:var(--color-paper)]">
   <nav class="page-shell flex h-16 items-center justify-between" aria-label="Hauptnavigation">
     <a href="/" class="flex min-h-11 items-center gap-3" aria-label="Hofstetten, Startseite">
-      <span class="grid size-8 place-items-center rounded-full border border-[color:var(--color-brass-light)]/60 font-serif text-lg italic text-[color:var(--color-brass-light)]"><span class="leading-none">H</span></span>
-      <span class="text-[13px] font-semibold tracking-[0.12em] uppercase">Hofstetten</span>
+      <VillageMark class="w-16 text-[color:var(--color-brass-light)]" />
+      <span class="grid leading-none">
+        <span class="font-serif text-lg">Hofstetten</span>
+        <span class="mt-1 text-[9px] font-semibold tracking-[0.1em] text-white/55 uppercase">97486 · Haßberge</span>
+      </span>
     </a>
-    <div class="hidden items-center gap-7 text-[13px] tracking-[0.06em] lg:flex">
-      <a class="link-line inline-flex min-h-11 items-center" href="/#geschichte">Geschichte</a>
-      <a class="link-line inline-flex min-h-11 items-center" href="/#st-anna">St. Anna</a>
-      <a class="link-line inline-flex min-h-11 items-center" href="/#entdecken">Landschaft</a>
-      <a class="link-line inline-flex min-h-11 items-center" href="/#dorfleben">Dorfleben</a>
-      <a class="link-line inline-flex min-h-11 items-center" href="/quellen">Quellen</a>
+    <div class="hidden items-center gap-6 text-[12px] lg:flex">
+      <a class="inline-flex min-h-11 items-center gap-2 hover:text-[color:var(--color-brass-light)]" href="/#geschichte"><span class="text-white/35">01</span>Geschichte</a>
+      <a class="inline-flex min-h-11 items-center gap-2 hover:text-[color:var(--color-brass-light)]" href="/#st-anna"><span class="text-white/35">02</span>St. Anna</a>
+      <a class="inline-flex min-h-11 items-center gap-2 hover:text-[color:var(--color-brass-light)]" href="/#entdecken"><span class="text-white/35">03</span>Landschaft</a>
+      <a class="inline-flex min-h-11 items-center gap-2 hover:text-[color:var(--color-brass-light)]" href="/#dorfleben"><span class="text-white/35">04</span>Dorfleben</a>
+      <a class="inline-flex min-h-11 items-center gap-2 hover:text-[color:var(--color-brass-light)]" href="/quellen"><span class="text-white/35">05</span>Quellen</a>
     </div>
     <button id="mobile-menu-open" type="button" class="inline-flex min-h-11 min-w-11 items-center justify-center text-[12px] tracking-[0.12em] uppercase lg:hidden" aria-controls="mobile-nav" aria-expanded="false">Menü</button>
   </nav>
@@ -20,11 +26,11 @@
   <details class="fixed top-2.5 right-2.5 z-50 lg:hidden">
     <summary class="inline-flex min-h-11 cursor-pointer list-none items-center px-2 text-[12px] tracking-[0.12em] text-[color:var(--color-paper)] uppercase">Menü</summary>
     <nav class="fixed inset-x-0 top-16 grid gap-4 bg-[color:var(--color-forest)] px-6 py-6 font-serif text-3xl text-[color:var(--color-paper)] shadow-xl" aria-label="Mobile Navigation ohne JavaScript">
-      <a href="/#geschichte">Geschichte</a>
-      <a href="/#st-anna">St. Anna</a>
-      <a href="/#entdecken">Landschaft</a>
-      <a href="/#dorfleben">Dorfleben</a>
-      <a href="/quellen">Quellen</a>
+      <a href="/#geschichte">01 Geschichte</a>
+      <a href="/#st-anna">02 St. Anna</a>
+      <a href="/#entdecken">03 Landschaft</a>
+      <a href="/#dorfleben">04 Dorfleben</a>
+      <a href="/quellen">05 Quellen</a>
     </nav>
   </details>
 </noscript>
@@ -32,11 +38,11 @@
 <nav id="mobile-nav" class="fixed inset-0 z-50 overflow-y-auto overscroll-contain bg-[color:var(--color-forest)] px-6 pt-[max(1.25rem,env(safe-area-inset-top))] pb-[max(1.25rem,env(safe-area-inset-bottom))] text-[color:var(--color-paper)] lg:hidden" aria-label="Mobile Navigation" hidden>
   <div class="flex justify-end"><button id="mobile-menu-close" type="button" class="inline-flex min-h-11 items-center justify-center px-2 text-sm tracking-widest uppercase">Schließen</button></div>
   <div class="mt-10 grid gap-6 font-serif text-4xl sm:mt-20 sm:text-5xl">
-    <a class="py-1" href="/#geschichte">Geschichte</a>
-    <a class="py-1" href="/#st-anna">St. Anna</a>
-    <a class="py-1" href="/#entdecken">Landschaft</a>
-    <a class="py-1" href="/#dorfleben">Dorfleben</a>
-    <a class="py-1" href="/quellen">Quellen</a>
+    <a class="grid grid-cols-[2rem_1fr] gap-2 py-1" href="/#geschichte"><span class="pt-2 font-sans text-xs text-white/35">01</span><span>Geschichte</span></a>
+    <a class="grid grid-cols-[2rem_1fr] gap-2 py-1" href="/#st-anna"><span class="pt-2 font-sans text-xs text-white/35">02</span><span>St. Anna</span></a>
+    <a class="grid grid-cols-[2rem_1fr] gap-2 py-1" href="/#entdecken"><span class="pt-2 font-sans text-xs text-white/35">03</span><span>Landschaft</span></a>
+    <a class="grid grid-cols-[2rem_1fr] gap-2 py-1" href="/#dorfleben"><span class="pt-2 font-sans text-xs text-white/35">04</span><span>Dorfleben</span></a>
+    <a class="grid grid-cols-[2rem_1fr] gap-2 py-1" href="/quellen"><span class="pt-2 font-sans text-xs text-white/35">05</span><span>Quellen</span></a>
   </div>
 </nav>
 

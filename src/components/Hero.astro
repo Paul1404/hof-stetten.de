@@ -2,29 +2,24 @@
 import { Picture } from "astro:assets";
 import hero from "../assets/images/st-anna.jpg";
 import PhotoCredit from "./PhotoCredit.astro";
+import VillageMark from "./VillageMark.astro";
 ---
-<section class="relative overflow-hidden bg-[color:var(--color-forest)] pt-16 text-[color:var(--color-paper)] lg:min-h-[100svh]">
-  <div class="page-shell grid items-center gap-10 py-12 lg:min-h-[calc(100svh-4rem)] lg:grid-cols-[1.02fr_.98fr] lg:py-8">
-    <div class="relative z-10 min-w-0 pt-6 lg:pt-0">
-      <p class="eyebrow !text-[color:var(--color-brass-light)]">Kirchdorf in den Haßbergen</p>
-      <h1 class="display-title mt-10 text-[color:var(--color-paper)]">Hof<br /><em class="font-light text-[color:var(--color-brass-light)]">stetten.</em></h1>
-      <div class="mt-12 grid max-w-2xl gap-6 border-t border-white/20 pt-7 sm:grid-cols-[1.4fr_.6fr]">
-        <p class="max-w-xl text-base leading-relaxed text-white/72 sm:text-lg">Hofstetten liegt auf halbem Weg zwischen Ebern und Haßfurt. Seit 1972 gehört das Kirchdorf zu Königsberg i.Bay.</p>
-        <dl class="grid grid-cols-2 gap-4 text-xs sm:grid-cols-1">
-          <div><dt class="text-white/60">Höhe</dt><dd class="mt-1 font-serif text-2xl text-white">398 m</dd></div>
-          <div><dt class="text-white/60">Sicher genannt</dt><dd class="mt-1 font-serif text-2xl text-white">1244</dd></div>
-        </dl>
-      </div>
+<section class="bg-[color:var(--color-paper)] pt-16">
+  <div class="page-shell py-14 sm:py-20 lg:py-24">
+    <div class="flex flex-wrap items-center justify-between gap-4 text-[10px] font-bold tracking-[.12em] text-[color:var(--color-muted)] uppercase">
+      <p>Kirchdorf in den Haßbergen</p>
+      <p>398 m · seit 1244 sicher belegt</p>
     </div>
-
-    <div class="relative min-w-0 lg:pl-8">
-      <div class="absolute -top-7 -right-3 hidden font-serif text-[9rem] leading-none text-white/[0.045] lg:block">1744</div>
-      <figure class="relative">
-        <div class="photo-frame aspect-[16/10] rounded-sm border border-white/15 shadow-2xl lg:h-[calc(100svh-10rem)] lg:min-h-[28rem] lg:max-h-[44rem] lg:aspect-auto">
-          <Picture src={hero} alt="Die Kapelle St. Anna in Hofstetten mit ihrem Dachreiter" widths={[640, 960, 1280]} sizes="(min-width: 1024px) 45vw, 92vw" formats={["avif", "webp"]} quality={76} loading="eager" fetchpriority="high" class="object-[48%_center]" />
-        </div>
-        <PhotoCredit author="Tilman2007" href="https://commons.wikimedia.org/wiki/File:Hofstetten_27_K%C3%B6nigsberg_in_Bayern_20201129_001.jpg" dark />
-      </figure>
+    <h1 class="display-title mt-8 whitespace-nowrap text-[color:var(--color-ink)]">Hofstetten</h1>
+    <div class="mt-8 grid gap-6 border-t border-[color:var(--color-line)] pt-6 md:grid-cols-[1fr_auto] md:items-end">
+      <p class="prose-copy max-w-3xl">Hofstetten liegt auf halbem Weg zwischen Ebern und Haßfurt. Seit 1972 gehört das Kirchdorf zu Königsberg i.Bay.</p>
+      <VillageMark class="w-28 text-[color:var(--color-rust)] md:w-36" />
     </div>
   </div>
+  <figure class="page-shell pb-5">
+    <div class="photo-frame aspect-[4/3] border-y border-[color:var(--color-line)] sm:aspect-[16/9] lg:aspect-[2/1]">
+      <Picture src={hero} alt="Die Kapelle St. Anna in Hofstetten mit ihrem Dachreiter" widths={[640, 960, 1280, 1600]} sizes="(min-width: 1024px) 95vw, 100vw" formats={["avif", "webp"]} quality={76} loading="eager" fetchpriority="high" class="object-[50%_center]" />
+    </div>
+    <PhotoCredit author="Tilman2007" href="https://commons.wikimedia.org/wiki/File:Hofstetten_27_K%C3%B6nigsberg_in_Bayern_20201129_001.jpg" />
+  </figure>
 </section>

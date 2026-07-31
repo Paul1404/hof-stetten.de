@@ -9,18 +9,17 @@ import SourceRef from "./SourceRef.astro";
         <p class="eyebrow">Chronik</p>
         <h2 class="section-title mt-8">Zur Geschichte Hofstettens.</h2>
       </div>
-      <p class="max-w-xl justify-self-end text-[15px] leading-7 text-[color:var(--color-ink-soft)]">Die Nennung von 1135 ist indirekt. In einer Urkunde von 1244 erscheint der Ort als „Houesteten“. Ein Visitationsbericht von 1870 dokumentiert die Hauptstraße, die Schule, die Felder und die wirtschaftliche Lage der damaligen Gemeinde.</p>
+      <p class="prose-copy max-w-xl justify-self-end text-[color:var(--color-ink-soft)]">Die Nennung von 1135 ist indirekt. In einer Urkunde von 1244 erscheint der Ort als „Houesteten“. Ein Visitationsbericht von 1870 dokumentiert die Hauptstraße, die Schule, die Felder und die wirtschaftliche Lage der damaligen Gemeinde.</p>
     </div>
 
     <ol role="list" class="mt-20 border-t border-[color:var(--color-line)]">
-      {HISTORY.map((entry, index) => (
-        <li class="grid gap-5 border-b border-[color:var(--color-line)] py-8 sm:grid-cols-[8rem_2.5rem_1fr] sm:items-start sm:gap-8">
-          <p class="font-serif text-4xl text-[color:var(--color-rust)]">{entry.year}</p>
-          <p class="hidden pt-2 text-center text-xs text-[color:var(--color-muted)] sm:block">{String(index + 1).padStart(2, "0")}</p>
-          <div class="grid gap-3 md:grid-cols-[.75fr_1.25fr] md:gap-12">
+      {HISTORY.map((entry) => (
+        <li class="history-entry border-b border-[color:var(--color-line)]">
+          <p class="py-9 pr-5 font-serif text-4xl text-[color:var(--color-rust)] sm:text-5xl">{entry.year}</p>
+          <div class:list={["history-record grid gap-4 py-9 md:grid-cols-[.75fr_1.25fr] md:gap-12", entry.year === "1744" && "bg-[color:var(--color-paper)]/35"]}>
             <h3 class="font-serif text-2xl">{entry.title}</h3>
             <div>
-              <p class="text-[15px] leading-7 text-[color:var(--color-ink-soft)]">{entry.text}</p>
+              <p class="prose-copy !text-[1.05rem] text-[color:var(--color-ink-soft)]">{entry.text}</p>
               <SourceRef id={entry.sourceId} />
             </div>
           </div>
