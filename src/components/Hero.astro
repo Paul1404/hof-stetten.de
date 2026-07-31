@@ -18,6 +18,39 @@ import PhotoCredit from "./PhotoCredit.astro";
       class="h-full w-full object-cover"
     />
     <div class="hero-scrim" aria-hidden="true"></div>
+    <div class="hero-awakening" aria-hidden="true" hidden>
+      <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" role="presentation">
+        <defs>
+          <filter id="village-glow" x="-300%" y="-300%" width="700%" height="700%">
+            <feGaussianBlur stdDeviation="7" result="blur" />
+            <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+          </filter>
+        </defs>
+
+        <path class="hero-road" pathLength="1" d="M 304 310 C 402 329 505 351 601 386 C 721 430 845 454 973 472 C 1112 491 1261 531 1498 592" />
+
+        <g class="hero-lights" filter="url(#village-glow)">
+          <circle style="--light-delay: 1.55s" cx="395" cy="326" r="3.3" />
+          <circle style="--light-delay: 1.68s" cx="486" cy="354" r="3.1" />
+          <circle style="--light-delay: 1.81s" cx="573" cy="381" r="3.6" />
+          <circle style="--light-delay: 1.94s" cx="666" cy="408" r="3.2" />
+          <circle style="--light-delay: 2.07s" cx="756" cy="432" r="3.5" />
+          <circle style="--light-delay: 2.2s" cx="843" cy="450" r="3.1" />
+          <circle style="--light-delay: 2.33s" cx="930" cy="461" r="3.6" />
+          <circle style="--light-delay: 2.46s" cx="1032" cy="478" r="3.2" />
+          <circle style="--light-delay: 2.59s" cx="1135" cy="506" r="3.5" />
+          <circle style="--light-delay: 2.72s" cx="1240" cy="535" r="3.1" />
+          <circle style="--light-delay: 2.85s" cx="1350" cy="560" r="3.4" />
+        </g>
+
+        <g class="hero-chapel" transform="translate(952 406)">
+          <circle r="15" />
+          <circle class="hero-chapel-core" r="3.5" />
+        </g>
+
+        <path class="hero-stream" pathLength="1" d="M 684 456 C 637 493 575 515 513 538 C 447 563 388 590 321 625 C 272 651 225 674 172 693" />
+      </svg>
+    </div>
     <div class="hero-credit">
       <PhotoCredit
         label="Quelle"
@@ -37,3 +70,28 @@ import PhotoCredit from "./PhotoCredit.astro";
     </div>
   </div>
 </section>
+
+<script>
+  const awakening = document.querySelector<HTMLElement>(".hero-awakening");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let hasPlayed = false;
+
+  try {
+    hasPlayed = sessionStorage.getItem("hofstetten-hero-awakening") === "played";
+  } catch {
+    // Storage may be unavailable in strict privacy modes. Playing once is harmless.
+  }
+
+  if (awakening && !reduceMotion && !hasPlayed) {
+    awakening.hidden = false;
+    requestAnimationFrame(() => awakening.setAttribute("data-playing", "true"));
+    awakening.addEventListener("animationend", (event) => {
+      if (event.animationName === "hero-awakening-out") awakening.hidden = true;
+    });
+    try {
+      sessionStorage.setItem("hofstetten-hero-awakening", "played");
+    } catch {
+      // See note above.
+    }
+  }
+</script>

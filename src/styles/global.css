@@ -170,6 +170,61 @@ main { flex: 1 0 auto; }
     linear-gradient(90deg, rgb(15 28 20 / 0.22), transparent 62%);
 }
 
+.hero-awakening {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero-awakening svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.hero-road,
+.hero-stream {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.hero-road {
+  stroke: rgb(255 247 220 / 0.72);
+  stroke-width: 2.2;
+  filter: drop-shadow(0 0 5px rgb(255 211 125 / 0.48));
+}
+
+.hero-lights circle {
+  fill: rgb(255 211 126 / 0.95);
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.hero-chapel circle {
+  fill: none;
+  stroke: rgb(255 235 181 / 0.92);
+  stroke-width: 2;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.hero-chapel .hero-chapel-core {
+  fill: rgb(255 228 160 / 0.96);
+  stroke: none;
+}
+
+.hero-stream {
+  stroke: rgb(176 221 223 / 0.82);
+  stroke-width: 2.4;
+  filter: drop-shadow(0 0 5px rgb(166 221 224 / 0.42));
+}
+
 .hero-credit {
   position: absolute;
   z-index: 2;
@@ -225,11 +280,18 @@ main { flex: 1 0 auto; }
     line-height: 0.82;
   }
   .hero-subtitle { margin-top: 1.125rem; font-size: 1.125rem; }
+  .hero-awakening svg { transform: translateX(-8svh); }
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .hero-image img { animation: hero-image-in 1.4s cubic-bezier(.2,.65,.25,1) both; }
   .hero-title-panel { animation: hero-copy-in 900ms 180ms cubic-bezier(.2,.65,.25,1) both; }
+  .hero-awakening[data-playing="true"] { animation: hero-awakening-out 5.8s linear both; }
+  .hero-awakening[data-playing="true"] .hero-road { animation: hero-line-in 1.25s 0.72s cubic-bezier(.42,0,.2,1) forwards; }
+  .hero-awakening[data-playing="true"] .hero-lights circle { animation: hero-light-in 1.8s var(--light-delay) cubic-bezier(.2,.7,.2,1) both; }
+  .hero-awakening[data-playing="true"] .hero-chapel circle { animation: hero-chapel-pulse 1.7s 2.72s cubic-bezier(.2,.7,.2,1) both; }
+  .hero-awakening[data-playing="true"] .hero-chapel-core { animation-delay: 2.82s; }
+  .hero-awakening[data-playing="true"] .hero-stream { animation: hero-line-in 1.35s 3.3s cubic-bezier(.42,0,.2,1) forwards; }
 }
 
 @keyframes hero-image-in {
@@ -240,6 +302,30 @@ main { flex: 1 0 auto; }
 @keyframes hero-copy-in {
   from { opacity: 0; transform: translateY(1.5rem); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes hero-line-in {
+  0% { opacity: 0; stroke-dashoffset: 1; }
+  12% { opacity: 1; }
+  100% { opacity: 1; stroke-dashoffset: 0; }
+}
+
+@keyframes hero-light-in {
+  0% { opacity: 0; transform: scale(0.25); }
+  28% { opacity: 1; transform: scale(1.45); }
+  55% { opacity: 0.88; transform: scale(1); }
+  100% { opacity: 0.48; transform: scale(0.88); }
+}
+
+@keyframes hero-chapel-pulse {
+  0% { opacity: 0; transform: scale(0.35); }
+  38% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(2.2); }
+}
+
+@keyframes hero-awakening-out {
+  0%, 78% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 /* Years, house numbers, counts. Content, so it is set in ink, not in accent. */
