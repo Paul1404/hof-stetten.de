@@ -1,0 +1,21 @@
+---
+import Base from "../layouts/Base.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+---
+<Base title="Impressum. Hofstetten." description="Impressum für hof-stetten.de.">
+  <Nav />
+  <main id="hauptinhalt" class="pt-36 pb-28 sm:pt-44 sm:pb-36">
+    <article class="mx-auto max-w-2xl px-6">
+      <p class="eyebrow">Rechtliches</p>
+      <h1 class="section-title mt-8">Impressum.</h1>
+      <div class="mt-14 space-y-10 text-[15px] leading-7 text-[color:var(--color-ink-soft)]">
+        <section><h2 class="font-serif text-2xl text-[color:var(--color-ink)]">Angaben gemäß § 5 DDG</h2><p class="mt-3">Paul Dresch<br />Schweinfurter Weg 6<br />97508 Untereuerheim</p></section>
+        <section><h2 class="font-serif text-2xl text-[color:var(--color-ink)]">Kontakt</h2><p class="mt-3">E-Mail: <a class="link-line text-[color:var(--color-rust)]" href="mailto:mail@pdcd.net">mail@pdcd.net</a></p></section>
+        <section><h2 class="font-serif text-2xl text-[color:var(--color-ink)]">Inhaltlicher Hinweis</h2><p class="mt-3">hof-stetten.de ist ein unabhängiges, redaktionelles Ortsporträt. Die Website ist kein offizielles Angebot der Stadt Königsberg i.Bay., des Landkreises Haßberge oder der genannten Vereine und Einrichtungen.</p></section>
+        <section><h2 class="font-serif text-2xl text-[color:var(--color-ink)]">Haftung für Links</h2><p class="mt-3">Diese Website enthält Links zu externen Angeboten. Für deren Inhalte sind ausschließlich die jeweiligen Betreiber verantwortlich.</p></section>
+      </div>
+    </article>
+  </main>
+  <Footer />
+</Base>

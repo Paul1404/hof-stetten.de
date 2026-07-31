@@ -1,0 +1,35 @@
+version: 2
+updates:
+  - package-ecosystem: bun
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: sunday
+      time: "08:00"
+      timezone: Europe/Berlin
+    groups:
+      astro:
+        patterns: ["astro", "@astrojs/*"]
+      tailwind:
+        patterns: ["tailwindcss", "@tailwindcss/*"]
+      fonts:
+        patterns: ["@fontsource/*", "@fontsource-variable/*"]
+      types:
+        patterns: ["@types/*", "typescript"]
+    ignore:
+      - dependency-name: typescript
+        versions: [">= 7.0.0, < 8.0.0"]
+  - package-ecosystem: docker
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: sunday
+      time: "08:00"
+      timezone: Europe/Berlin
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: sunday
+      time: "08:00"
+      timezone: Europe/Berlin

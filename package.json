@@ -1,0 +1,30 @@
+{
+  "name": "hof-stetten.de",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "bun run server.ts",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "icons": "bun run scripts/generate-icons.ts",
+    "og": "bun run scripts/generate-og-image.ts",
+    "optimize-images": "bun run scripts/optimize-source-images.ts"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
+    "@fontsource-variable/manrope": "^5.2.8",
+    "@fontsource-variable/newsreader": "^5.2.8",
+    "@tailwindcss/vite": "^4.3.2",
+    "astro": "^7.0.7",
+    "tailwindcss": "^4.3.2"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "@types/bun": "latest",
+    "sharp": "^0.35.3",
+    "typescript": "^6.0.3"
+  }
+}

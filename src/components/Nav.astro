@@ -1,0 +1,25 @@
+<header class="fixed inset-x-0 top-0 z-40 border-b border-white/10 bg-[color:var(--color-forest)]/92 text-[color:var(--color-paper)] backdrop-blur-md">
+  <nav class="page-shell flex h-16 items-center justify-between" aria-label="Hauptnavigation">
+    <a href="/" class="flex items-center gap-3" aria-label="Hofstetten, Startseite">
+      <span class="grid size-8 place-items-center rounded-full border border-[color:var(--color-brass-light)]/60 font-serif text-lg italic text-[color:var(--color-brass-light)]">H</span>
+      <span class="text-[13px] font-semibold tracking-[0.12em] uppercase">Hofstetten</span>
+    </a>
+    <div class="hidden items-center gap-7 text-[12px] tracking-[0.08em] sm:flex">
+      <a class="link-line" href="/#geschichte">Geschichte</a>
+      <a class="link-line" href="/#entdecken">Entdecken</a>
+      <a class="link-line" href="/#dorfleben">Dorfleben</a>
+      <a class="link-line" href="/quellen">Quellen</a>
+    </div>
+    <a href="#mobile-nav" class="text-[12px] tracking-[0.12em] uppercase sm:hidden">Menü</a>
+  </nav>
+</header>
+
+<nav id="mobile-nav" class="fixed inset-0 z-50 hidden bg-[color:var(--color-forest)] px-6 py-8 text-[color:var(--color-paper)] target:block sm:hidden" aria-label="Mobile Navigation">
+  <div class="flex justify-end"><a href="#" class="text-sm uppercase tracking-widest">Schließen</a></div>
+  <div class="mt-20 grid gap-6 font-serif text-5xl">
+    <a href="/#geschichte">Geschichte</a>
+    <a href="/#entdecken">Entdecken</a>
+    <a href="/#dorfleben">Dorfleben</a>
+    <a href="/quellen">Quellen</a>
+  </div>
+</nav>

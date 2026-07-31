@@ -1,0 +1,10 @@
+---
+interface Props {
+  author: string;
+  href: string;
+}
+const { author, href } = Astro.props;
+---
+<a href={href} target="_blank" rel="external noopener license" class="mt-2 block text-[10px] tracking-[0.08em] text-[color:var(--color-muted)] uppercase hover:text-[color:var(--color-rust)]">
+  Foto: {author}, CC BY-SA 4.0
+</a>

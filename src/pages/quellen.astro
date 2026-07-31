@@ -1,0 +1,47 @@
+---
+import Base from "../layouts/Base.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import { PHOTO_CREDITS, SOURCES } from "../data/site";
+---
+<Base title="Quellen und Bildnachweise. Hofstetten." description="Quellen, Recherchegrundlagen und Bildnachweise für das Ortsporträt Hofstetten.">
+  <Nav />
+  <main id="hauptinhalt" class="pt-36 pb-28 sm:pt-44 sm:pb-36">
+    <div class="page-shell">
+      <p class="eyebrow">Dokumentation</p>
+      <h1 class="section-title mt-8 max-w-5xl">Quellen und Bildnachweise.</h1>
+      <p class="mt-10 max-w-2xl text-[15px] leading-7 text-[color:var(--color-ink-soft)]">Die Seite trennt belegte Tatsachen von redaktioneller Einordnung. Wo Quellen voneinander abweichen oder eine frühe Nennung nur indirekt zugeordnet wird, ist das im Text kenntlich gemacht.</p>
+
+      <section class="mt-20">
+        <h2 class="font-serif text-4xl">Recherchegrundlagen</h2>
+        <ol class="mt-8 border-t border-[color:var(--color-line)]">
+          {SOURCES.map((source, index) => (
+            <li class="grid gap-4 border-b border-[color:var(--color-line)] py-7 sm:grid-cols-[3rem_1fr]">
+              <span class="text-xs text-[color:var(--color-muted)]">{String(index + 1).padStart(2, "0")}</span>
+              <div>
+                {"href" in source ? <a class="link-line font-serif text-2xl" href={source.href} target="_blank" rel="external noopener">{source.title}</a> : <h3 class="font-serif text-2xl">{source.title}</h3>}
+                <p class="mt-2 max-w-3xl text-sm leading-6 text-[color:var(--color-ink-soft)]">{source.detail}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section class="mt-24">
+        <h2 class="font-serif text-4xl">Fotografien</h2>
+        <p class="mt-4 max-w-2xl text-sm leading-6 text-[color:var(--color-ink-soft)]">Die eingebundenen Fotografien stammen aus Wikimedia Commons. Sie wurden für die Webausgabe skaliert und komprimiert. Die Bearbeitungen stehen jeweils unter derselben Lizenz wie das Original.</p>
+        <div class="mt-8 overflow-x-auto">
+          <table class="w-full min-w-[700px] border-collapse text-left text-sm">
+            <thead class="border-y border-[color:var(--color-line)] text-[10px] uppercase tracking-widest text-[color:var(--color-muted)]"><tr><th class="py-4 pr-6">Motiv</th><th class="py-4 pr-6">Urheber</th><th class="py-4 pr-6">Lizenz</th><th class="py-4">Original</th></tr></thead>
+            <tbody>
+              {PHOTO_CREDITS.map((photo) => (
+                <tr class="border-b border-[color:var(--color-line)]"><td class="py-5 pr-6 font-medium">{photo.title}</td><td class="py-5 pr-6">{photo.author}</td><td class="py-5 pr-6"><a class="link-line" href={photo.licenseUrl}>{photo.license}</a></td><td class="py-5"><a class="link-line text-[color:var(--color-rust)]" href={photo.source}>Wikimedia Commons</a></td></tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+  <Footer />
+</Base>

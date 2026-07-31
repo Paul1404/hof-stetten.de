@@ -1,0 +1,27 @@
+---
+import { HISTORY } from "../data/site";
+---
+<section id="geschichte" class="bg-[color:var(--color-paper-deep)] py-28 sm:py-36">
+  <div class="page-shell">
+    <div class="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
+      <div data-reveal>
+        <p class="eyebrow">Chronik</p>
+        <h2 class="section-title mt-8">Spuren durch neun Jahrhunderte.</h2>
+      </div>
+      <p data-reveal class="max-w-xl justify-self-end text-[15px] leading-7 text-[color:var(--color-ink-soft)]">Die frühe Nennung von 1135 ist indirekt. Sicher greifbar wird Hofstetten 1244 als „Houesteten“. Aus Namen, Bauwerken und kommunalen Einschnitten entsteht eine knappe, aber klare Ortslinie.</p>
+    </div>
+
+    <ol class="mt-20 border-t border-[color:var(--color-line)]">
+      {HISTORY.map((entry, index) => (
+        <li data-reveal class="grid gap-5 border-b border-[color:var(--color-line)] py-8 sm:grid-cols-[8rem_2.5rem_1fr] sm:items-start sm:gap-8">
+          <p class="font-serif text-4xl text-[color:var(--color-rust)]">{entry.year}</p>
+          <p class="hidden pt-2 text-center text-xs text-[color:var(--color-muted)] sm:block">{String(index + 1).padStart(2, "0")}</p>
+          <div class="grid gap-3 md:grid-cols-[.75fr_1.25fr] md:gap-12">
+            <h3 class="font-serif text-2xl">{entry.title}</h3>
+            <p class="text-sm leading-7 text-[color:var(--color-ink-soft)]">{entry.text}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
