@@ -33,13 +33,13 @@ import { PHOTO_CREDITS, SOURCES } from "../data/site";
 
       <section class="mt-14 sm:mt-20">
         <h2 class="t-label">Fotografien</h2>
-        <p class="t-note mt-4 max-w-2xl text-[color:var(--color-ink-soft)]">Die eingebundenen Fotografien stammen aus Wikimedia Commons. Sie wurden für die Webausgabe skaliert und komprimiert. Die Bearbeitungen stehen jeweils unter derselben Lizenz wie das Original.</p>
+        <p class="t-note mt-4 max-w-2xl text-[color:var(--color-ink-soft)]">Die Fotografien stammen aus Wikimedia Commons, das Luftbild von der Bayerischen Vermessungsverwaltung. Alle Aufnahmen wurden für die Webausgabe zugeschnitten, skaliert und komprimiert. Die Bearbeitungen stehen jeweils unter derselben Lizenz wie das Original.</p>
         <ol role="list" class="mt-6 grid border-t border-[color:var(--color-line)] md:hidden">
           {PHOTO_CREDITS.map((photo) => (
             <li class="grid gap-1.5 border-b border-[color:var(--color-line)] py-5">
               <p class="t-heading">{photo.title}</p>
               <p class="t-note text-[color:var(--color-ink-soft)]">{photo.author}, <a class="link-line" href={photo.licenseUrl}>{photo.license}</a></p>
-              <a class="source-ref mt-1" href={photo.source}>Original bei Wikimedia Commons</a>
+              <a class="source-ref mt-1" href={photo.source}>Original bei {photo.sourceLabel}</a>
             </li>
           ))}
         </ol>
@@ -48,7 +48,7 @@ import { PHOTO_CREDITS, SOURCES } from "../data/site";
             <thead><tr class="border-y border-[color:var(--color-line)]"><th scope="col" class="t-label py-3 pr-6 font-semibold">Motiv</th><th scope="col" class="t-label py-3 pr-6 font-semibold">Urheber</th><th scope="col" class="t-label py-3 pr-6 font-semibold">Lizenz</th><th scope="col" class="t-label py-3 font-semibold">Original</th></tr></thead>
             <tbody>
               {PHOTO_CREDITS.map((photo) => (
-                <tr class="border-b border-[color:var(--color-line)]"><td class="py-4 pr-6 font-serif text-[1.0625rem]">{photo.title}</td><td class="py-4 pr-6 text-[color:var(--color-ink-soft)]">{photo.author}</td><td class="py-4 pr-6"><a class="link-line text-[color:var(--color-ink-soft)]" href={photo.licenseUrl}>{photo.license}</a></td><td class="py-4"><a class="link-line text-[color:var(--color-rust)]" href={photo.source}>Wikimedia Commons</a></td></tr>
+                <tr class="border-b border-[color:var(--color-line)]"><td class="py-4 pr-6 font-serif text-[1.0625rem]">{photo.title}</td><td class="py-4 pr-6 text-[color:var(--color-ink-soft)]">{photo.author}</td><td class="py-4 pr-6"><a class="link-line text-[color:var(--color-ink-soft)]" href={photo.licenseUrl}>{photo.license}</a></td><td class="py-4"><a class="link-line text-[color:var(--color-rust)]" href={photo.source}>{photo.sourceLabel}</a></td></tr>
               ))}
             </tbody>
           </table>

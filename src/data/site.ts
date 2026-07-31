@@ -146,6 +146,13 @@ export const SOURCES = [
     href: "https://www.lfu.bayern.de/wasser/gewaessernachbarschaften/themen/wrrl/doc/arbeitshilfe.pdf",
   },
   {
+    id: "luftbild-dop20",
+    title: "Digitales Orthophoto DOP20, Bayerische Vermessungsverwaltung",
+    detail:
+      "Amtliches Luftbild aus dem Bildflug vom 14. August 2025 (Bildflug-Nr. 125010/0), abgerufen über den offenen Kartendienst der Bayerischen Vermessungsverwaltung. Für das Auftaktbild auf einen Ausschnitt um Hofstetten zugeschnitten und um 40 Grad gedreht, sodass die Dorfstraße waagerecht durchs Bild verläuft.",
+    href: "https://geodaten.bayern.de/opengeodata/OpenDataDetail.html?pn=dop20",
+  },
+  {
     id: "einwohner-historisch",
     title: "Bavarikon: Hofstetten",
     detail: "Historische Einwohnerzahlen für den Gemeindeteil Hofstetten von 1871 bis 1987.",
@@ -167,11 +174,21 @@ export const SOURCES = [
 
 export const PHOTO_CREDITS = [
   {
+    file: "hofstetten-luftbild.jpg",
+    title: "Luftbild von Hofstetten",
+    author: "Bayerische Vermessungsverwaltung",
+    license: "CC BY 4.0",
+    source: "https://geodaten.bayern.de/opengeodata/OpenDataDetail.html?pn=dop20",
+    sourceLabel: "Bayerische Vermessungsverwaltung",
+    licenseUrl: "https://creativecommons.org/licenses/by/4.0/deed.de",
+  },
+  {
     file: "st-anna.jpg",
     title: "St. Anna in Hofstetten",
     author: "Tilman2007",
     license: "CC BY-SA 4.0",
     source: "https://commons.wikimedia.org/wiki/File:Hofstetten_27_K%C3%B6nigsberg_in_Bayern_20201129_001.jpg",
+    sourceLabel: "Wikimedia Commons",
     licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
   },
   {
@@ -180,6 +197,7 @@ export const PHOTO_CREDITS = [
     author: "Stephan van Helden",
     license: "CC BY-SA 4.0",
     source: "https://commons.wikimedia.org/wiki/File:D-6-74-164-112_Kapelle_St_Anna_Hofstetten,_Portal.jpg",
+    sourceLabel: "Wikimedia Commons",
     licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
   },
   {
@@ -188,6 +206,7 @@ export const PHOTO_CREDITS = [
     author: "Stephan van Helden",
     license: "CC BY-SA 4.0",
     source: "https://commons.wikimedia.org/wiki/File:Statue_der_Heiligen_Familie_vor_der_Kirche_St_Anna_in_Hofstetten.jpg",
+    sourceLabel: "Wikimedia Commons",
     licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
   },
   {
@@ -196,6 +215,7 @@ export const PHOTO_CREDITS = [
     author: "Stephan van Helden",
     license: "CC BY-SA 4.0",
     source: "https://commons.wikimedia.org/wiki/File:Der_Ebelsbach_nordwestlich_von_Hofstetten_(3).jpg",
+    sourceLabel: "Wikimedia Commons",
     licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
   },
   {
@@ -204,6 +224,7 @@ export const PHOTO_CREDITS = [
     author: "Stephan van Helden",
     license: "CC BY-SA 4.0",
     source: "https://commons.wikimedia.org/wiki/File:Weg_zur_Wolfsgrube_am_M%C3%B6nchsberg.jpg",
+    sourceLabel: "Wikimedia Commons",
     licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
   },
 ] as const;

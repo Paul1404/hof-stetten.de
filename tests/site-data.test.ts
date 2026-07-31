@@ -19,11 +19,14 @@ describe("editorial data", () => {
     for (const entry of POPULATION) expect(entry.people).toBeGreaterThan(0);
   });
 
+  // Not every image comes from Wikimedia Commons: the aerial is CC BY 4.0 open
+  // data from the Bavarian survey. The invariant is a named author, a Creative
+  // Commons licence, and links to both the original and the licence deed.
   test("keeps public photo licensing complete", () => {
     for (const photo of PHOTO_CREDITS) {
       expect(photo.author.length).toBeGreaterThan(0);
-      expect(photo.license).toMatch(/^CC BY-SA/);
-      expect(photo.source).toStartWith("https://commons.wikimedia.org/");
+      expect(photo.license).toMatch(/^CC BY/);
+      expect(photo.source).toStartWith("https://");
       expect(photo.licenseUrl).toStartWith("https://creativecommons.org/");
     }
   });
