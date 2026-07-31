@@ -2,9 +2,10 @@
 interface Props {
   author: string;
   href: string;
+  dark?: boolean;
 }
-const { author, href } = Astro.props;
+const { author, href, dark = false } = Astro.props;
 ---
-<a href={href} target="_blank" rel="external noopener license" class="mt-2 block text-[10px] tracking-[0.08em] text-[color:var(--color-muted)] uppercase hover:text-[color:var(--color-rust)]">
+<a href={href} rel="external license" class:list={["mt-1 inline-flex min-h-6 items-center text-[11px] tracking-[0.06em] uppercase underline decoration-transparent underline-offset-4 hover:decoration-current", dark ? "text-white/60 hover:text-white" : "text-[color:var(--color-muted)] hover:text-[color:var(--color-rust)]"]}>
   Foto: {author}, CC BY-SA 4.0
 </a>

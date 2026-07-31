@@ -2,7 +2,7 @@ export const SITE = {
   name: "Hofstetten",
   domain: "hof-stetten.de",
   description:
-    "Hofstetten, Kirchdorf der Stadt Königsberg i.Bay. im Landkreis Haßberge. Geschichte, Landschaft, St. Anna und das Dorfleben zwischen Ebern und Haßfurt.",
+    "Ein unabhängiges Ortsporträt über Hofstetten, Kirchdorf der Stadt Königsberg i.Bay. im Landkreis Haßberge.",
   latitude: 50.070278,
   longitude: 10.641667,
 } as const;
@@ -10,38 +10,38 @@ export const SITE = {
 export const HISTORY = [
   {
     year: "1135",
-    title: "Eine indirekte Spur",
+    title: "Indirekte Nennung",
     text: "Ein Hermann von „hoffenstetten“ erscheint als Zeuge in einer Urkunde des Bamberger Bischofs Otto. Die Zuordnung gilt als indirekte erste Nennung des Ortes.",
   },
   {
     year: "1244",
-    title: "„Houesteten“ wird genannt",
+    title: "„Houesteten“ in einer Urkunde",
     text: "Ludwig von Raueneck übergibt dem Würzburger Bischof Güter in „Houesteten“. Damit ist der Ort ausdrücklich in einer Urkunde greifbar. Nach einer vermuteten Wüstungsperiode war zeitweise auch der Name „Neudorf“ gebräuchlich.",
   },
   {
     year: "1744",
-    title: "St. Anna entsteht",
+    title: "Bau der Kapelle St. Anna",
     text: "Die spätbarocke Kapelle erhält ihre heutige Gestalt. Das Sandsteinportal trägt die Jahreszahl 1744, das Relief der Vierzehn Nothelfer wird auf 1751 datiert.",
   },
   {
     year: "1870",
-    title: "Eine Straße, 171 Seelen",
+    title: "171 Einwohner mit Bühl",
     text: "Bei einer amtlichen Visitation zählt die Landgemeinde Hofstetten mit dem Weiler Bühl 171 Einwohner. Der Bericht beschreibt eine einzige Hauptstraße mit gepflasterten, sauber gehaltenen Gräben, aber auch karge Felder und eine Gemeinde ohne eigenes Vermögen.",
   },
   {
     year: "1965",
-    title: "Die Blaskapelle wird gegründet",
-    text: "Aus Hofstetten wächst eine Kapelle, die das musikalische Leben im Ort und weit darüber hinaus bis heute prägt.",
+    title: "Gründung der Blaskapelle",
+    text: "Die Blaskapelle Hofstetten wird gegründet. 2025 feiert der Verein sein 60-jähriges Bestehen.",
   },
   {
     year: "1972",
-    title: "Teil der Stadt Königsberg",
+    title: "Eingemeindung nach Königsberg",
     text: "Die bis dahin selbstständige Gemeinde Hofstetten wird am 1. Juli nach Königsberg i.Bay. eingegliedert. Der frühere Landkreis Ebern geht im Landkreis Haßberge auf.",
   },
   {
     year: "2010",
-    title: "Die Heilige Familie",
-    text: "Vor St. Anna wird eine Sandsteinskulptur aufgestellt. Sie ergänzt den historischen Mittelpunkt um ein zeitgenössisches Zeichen.",
+    title: "Skulptur vor St. Anna",
+    text: "Vor der Kapelle wird eine Sandsteinskulptur der Heiligen Familie aufgestellt.",
   },
 ] as const;
 

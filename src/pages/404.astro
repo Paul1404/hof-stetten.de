@@ -5,12 +5,12 @@ import Footer from "../components/Footer.astro";
 ---
 <Base title="Seite nicht gefunden. Hofstetten." description="Die angeforderte Seite wurde nicht gefunden." noindex>
   <Nav />
-  <main id="hauptinhalt" class="grid min-h-[75svh] place-items-center px-6 pt-24 text-center">
+  <main id="hauptinhalt" tabindex="-1" class="grid min-h-[75svh] place-items-center px-6 pt-24 text-center">
     <div>
       <p class="font-serif text-[9rem] leading-none text-[color:var(--color-line)]">404</p>
-      <h1 class="mt-2 font-serif text-5xl">Hier endet der Weg.</h1>
+      <h1 class="mt-2 font-serif text-5xl">Seite nicht gefunden.</h1>
       <p class="mt-5 text-sm text-[color:var(--color-muted)]">Die gesuchte Seite gibt es nicht.</p>
-      <a class="link-line mt-8 inline-block font-semibold text-[color:var(--color-rust)]" href="/">Zurück nach Hofstetten</a>
+      <a class="link-line mt-8 inline-flex min-h-11 items-center font-semibold text-[color:var(--color-rust)]" href="/">Zurück nach Hofstetten</a>
     </div>
   </main>
   <Footer />
