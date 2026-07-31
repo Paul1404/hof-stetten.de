@@ -1,0 +1,27 @@
+---
+import { VILLAGE_YEAR } from "../data/site";
+import SourceRef from "./SourceRef.astro";
+---
+<section class="bg-[color:var(--color-paper-deep)] py-24 sm:py-28" aria-labelledby="dorfjahr-heading">
+  <div class="page-shell">
+    <div class="grid gap-8 lg:grid-cols-[.72fr_1.28fr] lg:items-end">
+      <div>
+        <p class="eyebrow">Dorfjahr</p>
+        <h2 id="dorfjahr-heading" class="section-title mt-8">Vier feste Punkte.</h2>
+      </div>
+      <div class="max-w-xl lg:justify-self-end">
+        <p class="text-base leading-7 text-[color:var(--color-ink-soft)]">Maibaum, Wallfahrt, Brunnenfest und Annatag stehen regelmäßig im Hofstettener Kalender. Die konkreten Veranstaltungstermine werden von den Vereinen bekannt gegeben.</p>
+        <div class="mt-4 flex gap-4"><SourceRef id="stadt-hofstetten" /><SourceRef id="termine-2026" label="Kalender 2026" /></div>
+      </div>
+    </div>
+    <ol role="list" class="mt-14 grid border-t border-[color:var(--color-line)] sm:grid-cols-2 lg:grid-cols-4">
+      {VILLAGE_YEAR.map((entry, index) => (
+        <li class:list={["py-7 sm:px-6", index > 0 && "border-t border-[color:var(--color-line)] sm:border-t-0 sm:border-l"]}>
+          <p class="text-[11px] font-bold tracking-[.14em] text-[color:var(--color-rust)] uppercase">{entry.date}</p>
+          <h3 class="mt-4 font-serif text-3xl">{entry.title}</h3>
+          <p class="mt-3 text-sm leading-6 text-[color:var(--color-ink-soft)]">{entry.detail}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

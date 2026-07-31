@@ -12,93 +12,162 @@ export const HISTORY = [
     year: "1135",
     title: "Indirekte Nennung",
     text: "Ein Hermann von „hoffenstetten“ erscheint als Zeuge in einer Urkunde des Bamberger Bischofs Otto. Die Zuordnung gilt als indirekte erste Nennung des Ortes.",
+    sourceId: "ortsnamenbuch",
   },
   {
     year: "1244",
     title: "„Houesteten“ in einer Urkunde",
-    text: "Ludwig von Raueneck übergibt dem Würzburger Bischof Güter in „Houesteten“. Damit ist der Ort ausdrücklich in einer Urkunde greifbar. Nach einer vermuteten Wüstungsperiode war zeitweise auch der Name „Neudorf“ gebräuchlich.",
+    text: "Ludwig von Raueneck übergibt dem Würzburger Bischof Güter in „Houesteten“. Damit ist der Ort ausdrücklich in einer Urkunde greifbar.",
+    sourceId: "ortsnamenbuch",
   },
   {
     year: "1744",
     title: "Bau der Kapelle St. Anna",
     text: "Die spätbarocke Kapelle erhält ihre heutige Gestalt. Das Sandsteinportal trägt die Jahreszahl 1744, das Relief der Vierzehn Nothelfer wird auf 1751 datiert.",
+    sourceId: "denkmalliste",
   },
   {
     year: "1870",
     title: "171 Einwohner mit Bühl",
     text: "Bei einer amtlichen Visitation zählt die Landgemeinde Hofstetten mit dem Weiler Bühl 171 Einwohner. Der Bericht beschreibt eine einzige Hauptstraße mit gepflasterten, sauber gehaltenen Gräben, aber auch karge Felder und eine Gemeinde ohne eigenes Vermögen.",
+    sourceId: "visitation-1870",
   },
   {
     year: "1965",
     title: "Gründung der Blaskapelle",
-    text: "Die Blaskapelle Hofstetten wird gegründet. 2025 feiert der Verein sein 60-jähriges Bestehen.",
+    text: "Die Blaskapelle Hofstetten wird gegründet. 2025 feierte der Verein sein 60-jähriges Bestehen.",
+    sourceId: "blaskapelle",
   },
   {
     year: "1972",
     title: "Eingemeindung nach Königsberg",
     text: "Die bis dahin selbstständige Gemeinde Hofstetten wird am 1. Juli nach Königsberg i.Bay. eingegliedert. Der frühere Landkreis Ebern geht im Landkreis Haßberge auf.",
+    sourceId: "gemeindehandbuch",
   },
   {
     year: "2010",
     title: "Skulptur vor St. Anna",
     text: "Vor der Kapelle wird eine Sandsteinskulptur der Heiligen Familie aufgestellt.",
+    sourceId: "stadt-hofstetten",
   },
+] as const;
+
+export const POPULATION = [
+  { year: 1871, people: 148 },
+  { year: 1925, people: 139 },
+  { year: 1950, people: 187 },
+  { year: 1970, people: 166 },
+  { year: 1987, people: 117 },
+  { year: 2021, people: 138 },
+] as const;
+
+export const VILLAGE_YEAR = [
+  { date: "30. April", title: "Maibaumaufstellen", detail: "in der Dorfmitte" },
+  { date: "Ende Mai", title: "Wallfahrt", detail: "zum Zeiler Käppele, 2026 am 31. Mai" },
+  { date: "Mitte Juli", title: "Brunnenfest", detail: "2026 am 18. und 19. Juli" },
+  { date: "26. Juli", title: "Annatag", detail: "Prozession bei St. Anna" },
 ] as const;
 
 export const SOURCES = [
   {
+    id: "ortsnamenbuch",
     title: "Historisches Ortsnamenbuch von Bayern, Unterfranken, Band 2",
-    detail: "Werner Schmiedel, Landkreise Ebern und Hofheim, München 1973, Seite 24. Grundlage für die frühen Namensformen und Urkundennennungen.",
-    href: "https://www.bavarikon.de/object/odb:BSB-ODB_S00003585",
+    detail: "Werner Schmiedel, Landkreise Ebern und Hofheim, München 1973, Seite 24. Bibliografische Grundlage für die frühen Namensformen und Urkundennennungen; online derzeit nicht vollständig zugänglich.",
   },
   {
+    id: "denkmalliste",
     title: "Bayerische Denkmalliste",
     detail: "Bayerisches Landesamt für Denkmalpflege, Denkmal D-6-74-164-112. Grundlage für Datierung und Baubeschreibung von St. Anna.",
-    href: "https://geoportal.bayern.de/denkmalatlas/",
+    href: "https://www.geodaten.bayern.de/denkmal_static_data/externe_denkmalliste/pdf/denkmalliste_merge_674164.pdf",
   },
   {
+    id: "einwohner-2021",
     title: "Amtsblatt der Stadt Königsberg i.Bay., 01/2021",
     detail: "Amtliche Einwohnerstatistik mit 138 Einwohnern zum 1. Januar 2021.",
     href: "https://www.koenigsberg.de/sites/default/files/2021-01/01-2021.pdf",
   },
   {
+    id: "gemeindehandbuch",
     title: "Handbuch der bayerischen Ämter, Gemeinden und Gerichte 1799 bis 1980",
     detail: "Herausgegeben von Wilhelm Volkert, München 1983. Grundlage für die kommunale Neuordnung von 1972.",
   },
   {
+    id: "blaskapelle",
     title: "Blaskapelle Hofstetten e.V.",
     detail: "Vereinsseite und aktueller Veranstaltungskalender.",
     href: "https://www.blaskapelle-hofstetten.de/",
   },
   {
+    id: "visitation-1870",
     title: "Landgemeinde Hofstetten im Jahr 1870",
     detail: "Albin Schorn, inFranken.de, 6. Dezember 2021. Auswertung des Visitationsberichts des königlichen Bezirksamts Ebern vom 11. Juli 1870.",
     href: "https://www.infranken.de/lk/gem/hassberge/landgemeinde-hofstetten-im-jahr-1870-art-5349176",
   },
   {
+    id: "kirchliche-zuordnung",
     title: "Stadt Königsberg i.Bay.: Kirchen und Pfarrämter",
     detail: "Amtliche Zuordnung von Jesserndorf mit Hofstetten und Bühl.",
     href: "https://koenigsberg.de/kirchen-pfarraemter?field_districts_target_id=All&field_religion_target_id=231",
   },
   {
+    id: "wahlraum-schule",
     title: "Königsberger Nachrichten, Ausgabe 09/2019",
     detail: "Amtlicher Nachweis der ehemaligen Schule als Wahlraum für Hofstetten, Köslau und Bühl sowie der Anschrift Hofstetten 31.",
     href: "https://www.koenigsberg.de/sites/default/files/2019-05/09-2019.docx1_.pdf",
   },
   {
+    id: "jagdgenossenschaft",
     title: "Königsberger Nachrichten, Ausgabe 06/2026",
     detail: "Amtliche Einladung der Jagdgenossenschaft Hofstetten zur Jahreshauptversammlung in der ehemaligen Schule.",
     href: "https://koenigsberg.de/wp-content/uploads/2026/03/Amtsblatt-06-2026.pdf",
   },
   {
+    id: "feuerwehr",
     title: "Stadt Königsberg i.Bay.: Feuerwehren",
     detail: "Übersicht der Stützpunktfeuerwehr Königsberg und der Feuerwehren in den Stadtteilen, darunter Hofstetten.",
     href: "https://koenigsberg.de/home-rathaus-gemeinde/stadt-gemeinde/feuerwehren/",
   },
   {
-    title: "Naturpark Haßberge und Wikimedia Commons",
-    detail: "Ortsbezogene Landschaftsfotografien und Geodaten rund um Ebelsbach und Mönchsberg.",
+    id: "commons",
+    title: "Wikimedia Commons: Hofstetten",
+    detail: "Ortsbezogene Landschafts- und Denkmalfotografien rund um Hofstetten.",
     href: "https://commons.wikimedia.org/wiki/Category:Hofstetten_(K%C3%B6nigsberg_in_Bayern)",
+  },
+  {
+    id: "stadt-hofstetten",
+    title: "Stadt Königsberg i.Bay.: Hofstetten mit Bühl",
+    detail: "Amtliche Ortsbeschreibung mit Angaben zu Straßendorf, Feuerwehr, Förderverein, Dorfjahr, Dorfzeichen und ehemaliger Schule.",
+    href: "https://koenigsberg.de/home-rathaus-gemeinde/stadt-gemeinde/stadt-und-stadtteile/hofstetten-mit-buehl/",
+  },
+  {
+    id: "ebelsbach-lfu",
+    title: "Bayerisches Landesamt für Umwelt: Der Ebelsbach",
+    detail: "Gewässerbeschreibung mit Quelle bei Hofstetten, rund 16 Kilometern Länge und Mündung in den Main.",
+    href: "https://www.lfu.bayern.de/wasser/gewaessernachbarschaften/themen/wrrl/doc/arbeitshilfe.pdf",
+  },
+  {
+    id: "einwohner-historisch",
+    title: "Bavarikon: Hofstetten",
+    detail: "Historische Einwohnerzahlen für den Gemeindeteil Hofstetten von 1871 bis 1987.",
+    href: "https://www.bavarikon.de/object/odb:BSB-ODB_S00003585",
+  },
+  {
+    id: "schulgeschichte",
+    title: "Festschrift der Regiomontanus-Grundschule",
+    detail: "Schulgeschichte mit dem Hinweis auf ausgelagerte Klassen in Hofstetten im Schuljahr 1975/76.",
+    href: "https://www.grundschule-koenigsberg.de/wp-content/uploads/2023/04/Festschrift.pdf",
+  },
+  {
+    id: "spielplatz",
+    title: "Stadt Königsberg i.Bay.: Spielplätze",
+    detail: "Amtliche Beschreibung des Spielplatzes neben dem ehemaligen Schulhaus in Hofstetten.",
+    href: "https://koenigsberg.de/home-tourismus-freizeit/aktiv-und-freizeit/spielplaetze/",
+  },
+  {
+    id: "termine-2026",
+    title: "Blaskapelle Hofstetten: Termine 2026",
+    detail: "Jahreskalender mit Wallfahrt, Brunnenfest, Annatag, Ewiger Anbetung und Gottesdiensten.",
+    href: "https://www.blaskapelle-hofstetten.de/termine.html",
   },
 ] as const;
 

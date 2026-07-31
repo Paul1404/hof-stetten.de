@@ -62,9 +62,12 @@ console.log("wrote favicon.ico");
 const manifest = {
   name: "Hofstetten",
   short_name: "Hofstetten",
-  description: "Hofstetten. Kirchdorf in den Haßbergen zwischen Ebern und Haßfurt.",
+  description: "Ein unabhängiges Ortsporträt über Hofstetten im Landkreis Haßberge.",
+  id: "/",
+  scope: "/",
+  lang: "de",
   start_url: "/",
-  display: "standalone",
+  display: "browser",
   background_color: "#f4f0e6",
   theme_color: "#17372d",
   icons: [

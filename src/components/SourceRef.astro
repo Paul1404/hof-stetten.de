@@ -1,0 +1,9 @@
+---
+interface Props {
+  id: string;
+  label?: string;
+}
+
+const { id, label = "Quelle" } = Astro.props;
+---
+<a class="source-ref" href={`/quellen#${id}`}>{label}</a>

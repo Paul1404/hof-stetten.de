@@ -1,34 +1,38 @@
-<section id="dorfleben" class="py-24 sm:py-28">
+---
+import SourceRef from "./SourceRef.astro";
+---
+<section id="dorfleben" class="scroll-mt-16 py-24 sm:py-28">
   <div class="page-shell">
     <div class="grid gap-12 lg:grid-cols-[.72fr_1.28fr]">
-      <div data-reveal>
+      <div>
         <p class="eyebrow">Dorfleben</p>
-        <h2 class="section-title mt-8">Vereine und feste Termine.</h2>
+        <h2 class="section-title mt-8">Vereine, Schule, Dorfzeichen.</h2>
       </div>
       <div class="grid gap-px overflow-hidden bg-[color:var(--color-line)] sm:grid-cols-2">
-        <article data-reveal class="bg-[color:var(--color-paper)] p-8 sm:p-10">
+        <article class="bg-[color:var(--color-paper)] p-8 sm:p-10">
           <p class="font-serif text-5xl text-[color:var(--color-brass)]">1965</p>
           <h3 class="mt-8 text-3xl">Blaskapelle</h3>
-          <p class="mt-4 text-sm leading-7 text-[color:var(--color-ink-soft)]">Die 1965 gegründete Blaskapelle spielt bei Gottesdiensten, Festen und Konzerten in Hofstetten und der Umgebung. 2025 feierte der Verein sein 60-jähriges Bestehen.</p>
+          <p class="mt-4 text-[15px] leading-7 text-[color:var(--color-ink-soft)]">Die 1965 gegründete Blaskapelle spielt bei Gottesdiensten, Festen und Konzerten in Hofstetten und der Umgebung. 2025 feierte der Verein sein 60-jähriges Bestehen.</p>
           <a class="link-line mt-7 inline-flex min-h-11 items-center text-sm font-semibold text-[color:var(--color-rust)]" href="https://www.blaskapelle-hofstetten.de/" rel="external">Zur Blaskapelle</a>
         </article>
-        <article data-reveal class="bg-[color:var(--color-paper)] p-8 sm:p-10">
-          <p class="font-serif text-5xl text-[color:var(--color-brass)]">Ehrenamt</p>
+        <article class="bg-[color:var(--color-paper)] p-8 sm:p-10">
+          <p class="font-serif text-5xl text-[color:var(--color-brass)]">um 1883</p>
           <h3 class="mt-8 text-3xl">Freiwillige Feuerwehr</h3>
-          <p class="mt-4 text-sm leading-7 text-[color:var(--color-ink-soft)]">Die Hofstettener Feuerwehr ist eine der Stadtteilwehren, die von der Stützpunktfeuerwehr Königsberg unterstützt werden.</p>
-          <a class="link-line mt-7 inline-flex min-h-11 items-center text-sm font-semibold text-[color:var(--color-rust)]" href="https://koenigsberg.de/home-rathaus-gemeinde/stadt-gemeinde/feuerwehren/" rel="external">Feuerwehren der Stadt</a>
+          <p class="mt-4 text-[15px] leading-7 text-[color:var(--color-ink-soft)]">Die Stadt datiert die Gründung der Hofstettener Feuerwehr auf etwa 1883. Der Feuerwehr-Förderverein besteht seit 1983.</p>
+          <SourceRef id="stadt-hofstetten" />
         </article>
-        <article data-reveal class="bg-[color:var(--color-paper)] p-8 sm:p-10">
+        <article class="bg-[color:var(--color-paper)] p-8 sm:p-10">
           <p class="text-[10px] font-bold uppercase tracking-[.18em] text-[color:var(--color-muted)]">Hausnummer</p>
           <p class="mt-2 font-serif text-5xl text-[color:var(--color-brass)]">31</p>
           <h3 class="mt-8 text-3xl">Die alte Schule</h3>
-          <p class="mt-4 text-sm leading-7 text-[color:var(--color-ink-soft)]">Das frühere Schulhaus in der Dorfmitte wird als Vereinsheim und Wahllokal genutzt. Auch die Jagdgenossenschaft hält dort ihre Versammlungen ab.</p>
+          <p class="mt-4 text-[15px] leading-7 text-[color:var(--color-ink-soft)]">Noch 1975/76 wurden hier Klassen der Königsberger Schule unterrichtet. Heute dient das Haus als Vereinsheim, Wahllokal und Versammlungsort. Der Spielplatz liegt direkt daneben.</p>
+          <div class="flex flex-wrap gap-x-4"><SourceRef id="schulgeschichte" /><SourceRef id="spielplatz" /></div>
         </article>
-        <article data-reveal class="bg-[color:var(--color-paper)] p-8 sm:p-10">
-          <p class="font-serif text-5xl text-[color:var(--color-brass)]">Juli</p>
-          <h3 class="mt-8 text-3xl">Brunnenfest</h3>
-          <p class="mt-4 text-sm leading-7 text-[color:var(--color-ink-soft)]">Beim Brunnenfest 2026 standen Kesselfleisch und böhmische Blasmusik am Samstag sowie selbstgebackene Kuchen und Schäuferla am Sonntag auf dem Programm.</p>
-          <a class="link-line mt-7 inline-flex min-h-11 items-center text-sm font-semibold text-[color:var(--color-rust)]" href="https://www.blaskapelle-hofstetten.de/termine.html" rel="external">Aktuelle Termine</a>
+        <article class="bg-[color:var(--color-paper)] p-8 sm:p-10">
+          <p class="font-serif text-5xl text-[color:var(--color-brass)]">2014</p>
+          <h3 class="mt-8 text-3xl">Das Dorfzeichen</h3>
+          <p class="mt-4 text-[15px] leading-7 text-[color:var(--color-ink-soft)]">Seine Teilung steht für Dorfstraße und Häuserzeilen. Beil und Sonnenblume verweisen auf Waldarbeit und die Kirchenpatronin St. Anna.</p>
+          <SourceRef id="stadt-hofstetten" />
         </article>
       </div>
     </div>

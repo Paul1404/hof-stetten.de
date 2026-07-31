@@ -14,9 +14,9 @@ import { PHOTO_CREDITS, SOURCES } from "../data/site";
 
       <section class="mt-20">
         <h2 class="font-serif text-4xl">Recherchegrundlagen</h2>
-        <ol class="mt-8 border-t border-[color:var(--color-line)]">
+        <ol role="list" class="mt-8 border-t border-[color:var(--color-line)]">
           {SOURCES.map((source, index) => (
-            <li class="grid gap-4 border-b border-[color:var(--color-line)] py-7 sm:grid-cols-[3rem_1fr]">
+            <li id={source.id} class="grid scroll-mt-24 gap-4 border-b border-[color:var(--color-line)] py-7 sm:grid-cols-[3rem_1fr]">
               <span class="text-xs text-[color:var(--color-muted)]">{String(index + 1).padStart(2, "0")}</span>
               <div>
                 <h3 class="font-serif text-2xl">{"href" in source ? <a class="link-line" href={source.href} rel="external">{source.title}</a> : source.title}</h3>
@@ -30,8 +30,16 @@ import { PHOTO_CREDITS, SOURCES } from "../data/site";
       <section class="mt-24">
         <h2 class="font-serif text-4xl">Fotografien</h2>
         <p class="mt-4 max-w-2xl text-sm leading-6 text-[color:var(--color-ink-soft)]">Die eingebundenen Fotografien stammen aus Wikimedia Commons. Sie wurden für die Webausgabe skaliert und komprimiert. Die Bearbeitungen stehen jeweils unter derselben Lizenz wie das Original.</p>
-        <p class="mt-5 text-xs text-[color:var(--color-muted)] md:hidden">Die Tabelle lässt sich seitlich verschieben.</p>
-        <div class="mt-3 overflow-x-auto md:mt-8" role="region" aria-label="Bildnachweise" tabindex="0">
+        <ol role="list" class="mt-8 grid border-t border-[color:var(--color-line)] md:hidden">
+          {PHOTO_CREDITS.map((photo) => (
+            <li class="grid gap-2 border-b border-[color:var(--color-line)] py-6">
+              <p class="font-medium">{photo.title}</p>
+              <p class="text-sm text-[color:var(--color-ink-soft)]">{photo.author}, <a class="link-line" href={photo.licenseUrl}>{photo.license}</a></p>
+              <a class="source-ref mt-1" href={photo.source}>Original bei Wikimedia Commons</a>
+            </li>
+          ))}
+        </ol>
+        <div class="mt-8 hidden overflow-x-auto md:block" role="region" aria-label="Bildnachweise" tabindex="0">
           <table class="w-full min-w-[700px] border-collapse text-left text-sm">
             <thead class="border-y border-[color:var(--color-line)] text-[10px] uppercase tracking-widest text-[color:var(--color-muted)]"><tr><th scope="col" class="py-4 pr-6">Motiv</th><th scope="col" class="py-4 pr-6">Urheber</th><th scope="col" class="py-4 pr-6">Lizenz</th><th scope="col" class="py-4">Original</th></tr></thead>
             <tbody>
