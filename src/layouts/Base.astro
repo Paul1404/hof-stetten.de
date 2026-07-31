@@ -2,7 +2,7 @@
 import "../styles/global.css";
 import { SITE } from "../data/site";
 import newsreader from "@fontsource-variable/newsreader/files/newsreader-latin-wght-normal.woff2?url";
-import manrope from "@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2?url";
+import archivo from "@fontsource-variable/archivo/files/archivo-latin-wght-normal.woff2?url";
 
 interface Props {
   title?: string;
@@ -84,12 +84,12 @@ const structuredData = {
     {noindex && <meta name="robots" content="noindex, follow" />}
     <link rel="canonical" href={canonical} />
     <link rel="preload" href={newsreader} as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href={manrope} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={archivo} as="font" type="font/woff2" crossorigin />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon-32.png" sizes="32x32" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.webmanifest" />
-    <meta name="theme-color" content="#17372d" />
+    <meta name="theme-color" content="#f5f2ea" />
     <meta name="geo.region" content="DE-BY" />
     <meta name="geo.placename" content="Hofstetten, Königsberg i.Bay." />
     <meta name="geo.position" content={`${SITE.latitude};${SITE.longitude}`} />

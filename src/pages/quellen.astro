@@ -6,45 +6,49 @@ import { PHOTO_CREDITS, SOURCES } from "../data/site";
 ---
 <Base title="Quellen und Bildnachweise. Hofstetten." description="Quellen, Recherchegrundlagen und Bildnachweise für das Ortsporträt Hofstetten.">
   <Nav />
-  <main id="hauptinhalt" tabindex="-1" class="pt-36 pb-28 sm:pt-44 sm:pb-36">
-    <div class="page-shell">
-      <p class="eyebrow">Dokumentation</p>
-      <h1 class="section-title mt-8 max-w-5xl">Quellen und Bildnachweise.</h1>
-      <p class="mt-10 max-w-2xl text-[15px] leading-7 text-[color:var(--color-ink-soft)]">Die historischen Angaben auf dieser Website sind mit Quellen belegt. Die nur indirekt zugeordnete Nennung von 1135 ist im Text entsprechend gekennzeichnet.</p>
+  <main id="hauptinhalt" tabindex="-1" class="band">
+    <div class="shell">
+      <div class="marginal band-head">
+        <p class="t-label">Dokumentation</p>
+        <div>
+          <h1 class="t-title">Quellen und Bildnachweise</h1>
+          <p class="t-body mt-5 text-[color:var(--color-ink-soft)]">Die historischen Angaben auf dieser Website sind mit Quellen belegt. Die nur indirekt zugeordnete Nennung von 1135 ist im Text entsprechend gekennzeichnet.</p>
+        </div>
+      </div>
 
-      <section class="mt-20">
-        <h2 class="font-serif text-4xl">Recherchegrundlagen</h2>
-        <ol role="list" class="mt-8 border-t border-[color:var(--color-line)]">
+      <section class="mt-14 sm:mt-20">
+        <h2 class="t-label">Recherchegrundlagen</h2>
+        <ol role="list" class="mt-4 border-t border-[color:var(--color-line)]">
           {SOURCES.map((source, index) => (
-            <li id={source.id} class="grid scroll-mt-24 gap-4 border-b border-[color:var(--color-line)] py-7 sm:grid-cols-[3rem_1fr]">
-              <span class="text-xs text-[color:var(--color-muted)]">{String(index + 1).padStart(2, "0")}</span>
+            <li id={source.id} class="marginal scroll-mt-20 border-b border-[color:var(--color-line)] py-6">
+              <span class="t-figure text-[1.25rem] text-[color:var(--color-muted)] lg:pt-0.5">{String(index + 1).padStart(2, "0")}</span>
               <div>
-                <h3 class="font-serif text-2xl">{"href" in source ? <a class="link-line" href={source.href} rel="external">{source.title}</a> : source.title}</h3>
-                <p class="mt-2 max-w-3xl text-sm leading-6 text-[color:var(--color-ink-soft)]">{source.detail}</p>
+                <h3 class="t-heading">{"href" in source ? <a class="link-line" href={source.href} rel="external">{source.title}</a> : source.title}</h3>
+                <p class="t-note mt-2 max-w-2xl text-[color:var(--color-ink-soft)]">{source.detail}</p>
               </div>
             </li>
           ))}
         </ol>
       </section>
 
-      <section class="mt-24">
-        <h2 class="font-serif text-4xl">Fotografien</h2>
-        <p class="mt-4 max-w-2xl text-sm leading-6 text-[color:var(--color-ink-soft)]">Die eingebundenen Fotografien stammen aus Wikimedia Commons. Sie wurden für die Webausgabe skaliert und komprimiert. Die Bearbeitungen stehen jeweils unter derselben Lizenz wie das Original.</p>
-        <ol role="list" class="mt-8 grid border-t border-[color:var(--color-line)] md:hidden">
+      <section class="mt-14 sm:mt-20">
+        <h2 class="t-label">Fotografien</h2>
+        <p class="t-note mt-4 max-w-2xl text-[color:var(--color-ink-soft)]">Die eingebundenen Fotografien stammen aus Wikimedia Commons. Sie wurden für die Webausgabe skaliert und komprimiert. Die Bearbeitungen stehen jeweils unter derselben Lizenz wie das Original.</p>
+        <ol role="list" class="mt-6 grid border-t border-[color:var(--color-line)] md:hidden">
           {PHOTO_CREDITS.map((photo) => (
-            <li class="grid gap-2 border-b border-[color:var(--color-line)] py-6">
-              <p class="font-medium">{photo.title}</p>
-              <p class="text-sm text-[color:var(--color-ink-soft)]">{photo.author}, <a class="link-line" href={photo.licenseUrl}>{photo.license}</a></p>
+            <li class="grid gap-1.5 border-b border-[color:var(--color-line)] py-5">
+              <p class="t-heading">{photo.title}</p>
+              <p class="t-note text-[color:var(--color-ink-soft)]">{photo.author}, <a class="link-line" href={photo.licenseUrl}>{photo.license}</a></p>
               <a class="source-ref mt-1" href={photo.source}>Original bei Wikimedia Commons</a>
             </li>
           ))}
         </ol>
-        <div class="mt-8 hidden overflow-x-auto md:block" role="region" aria-label="Bildnachweise" tabindex="0">
-          <table class="w-full min-w-[700px] border-collapse text-left text-sm">
-            <thead class="border-y border-[color:var(--color-line)] text-[10px] uppercase tracking-widest text-[color:var(--color-muted)]"><tr><th scope="col" class="py-4 pr-6">Motiv</th><th scope="col" class="py-4 pr-6">Urheber</th><th scope="col" class="py-4 pr-6">Lizenz</th><th scope="col" class="py-4">Original</th></tr></thead>
+        <div class="mt-6 hidden overflow-x-auto md:block" role="region" aria-label="Bildnachweise" tabindex="0">
+          <table class="w-full min-w-[42rem] border-collapse text-left text-sm">
+            <thead><tr class="border-y border-[color:var(--color-line)]"><th scope="col" class="t-label py-3 pr-6 font-semibold">Motiv</th><th scope="col" class="t-label py-3 pr-6 font-semibold">Urheber</th><th scope="col" class="t-label py-3 pr-6 font-semibold">Lizenz</th><th scope="col" class="t-label py-3 font-semibold">Original</th></tr></thead>
             <tbody>
               {PHOTO_CREDITS.map((photo) => (
-                <tr class="border-b border-[color:var(--color-line)]"><td class="py-5 pr-6 font-medium">{photo.title}</td><td class="py-5 pr-6">{photo.author}</td><td class="py-5 pr-6"><a class="link-line" href={photo.licenseUrl}>{photo.license}</a></td><td class="py-5"><a class="link-line text-[color:var(--color-rust)]" href={photo.source}>Wikimedia Commons</a></td></tr>
+                <tr class="border-b border-[color:var(--color-line)]"><td class="py-4 pr-6 font-serif text-[1.0625rem]">{photo.title}</td><td class="py-4 pr-6 text-[color:var(--color-ink-soft)]">{photo.author}</td><td class="py-4 pr-6"><a class="link-line text-[color:var(--color-ink-soft)]" href={photo.licenseUrl}>{photo.license}</a></td><td class="py-4"><a class="link-line text-[color:var(--color-rust)]" href={photo.source}>Wikimedia Commons</a></td></tr>
               ))}
             </tbody>
           </table>

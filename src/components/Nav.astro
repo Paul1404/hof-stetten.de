@@ -1,48 +1,48 @@
 ---
 import VillageMark from "./VillageMark.astro";
+
+const LINKS = [
+  { href: "/#geschichte", label: "Geschichte" },
+  { href: "/#st-anna", label: "St. Anna" },
+  { href: "/#landschaft", label: "Landschaft" },
+  { href: "/#dorfleben", label: "Dorfleben" },
+  { href: "/quellen", label: "Quellen" },
+];
 ---
-<header class="fixed inset-x-0 top-0 z-40 border-b border-white/12 bg-[color:var(--color-forest)] text-[color:var(--color-paper)]">
-  <nav class="page-shell flex h-16 items-center justify-between" aria-label="Hauptnavigation">
-    <a href="/" class="flex min-h-11 items-center gap-3" aria-label="Hofstetten, Startseite">
-      <VillageMark class="w-16 text-[color:var(--color-brass-light)]" />
-      <span class="grid leading-none">
-        <span class="font-serif text-lg">Hofstetten</span>
-        <span class="mt-1 text-[9px] font-semibold tracking-[0.1em] text-white/55 uppercase">97486 · Haßberge</span>
-      </span>
+<header class="sticky top-0 z-40 border-b border-[color:var(--color-line)] bg-[color:var(--color-paper)]">
+  <nav class="shell flex h-14 items-center justify-between gap-6" aria-label="Hauptnavigation">
+    <a href="/" class="flex min-h-11 items-baseline gap-3" aria-label="Hofstetten, Startseite">
+      <span class="font-serif text-[1.05rem]">Hofstetten</span>
+      <span class="t-label hidden sm:inline">Haßberge</span>
     </a>
-    <div class="hidden items-center gap-6 text-[12px] lg:flex">
-      <a class="inline-flex min-h-11 items-center gap-2 hover:text-[color:var(--color-brass-light)]" href="/#geschichte"><span class="text-white/35">01</span>Geschichte</a>
-      <a class="inline-flex min-h-11 items-center gap-2 hover:text-[color:var(--color-brass-light)]" href="/#st-anna"><span class="text-white/35">02</span>St. Anna</a>
-      <a class="inline-flex min-h-11 items-center gap-2 hover:text-[color:var(--color-brass-light)]" href="/#entdecken"><span class="text-white/35">03</span>Landschaft</a>
-      <a class="inline-flex min-h-11 items-center gap-2 hover:text-[color:var(--color-brass-light)]" href="/#dorfleben"><span class="text-white/35">04</span>Dorfleben</a>
-      <a class="inline-flex min-h-11 items-center gap-2 hover:text-[color:var(--color-brass-light)]" href="/quellen"><span class="text-white/35">05</span>Quellen</a>
+    <div class="hidden items-center gap-7 text-[0.8125rem] text-[color:var(--color-ink-soft)] lg:flex">
+      {LINKS.map((link) => (
+        <a class="inline-flex min-h-11 items-center underline decoration-transparent underline-offset-[0.35em] hover:text-[color:var(--color-ink)] hover:decoration-current" href={link.href}>{link.label}</a>
+      ))}
     </div>
-    <button id="mobile-menu-open" type="button" class="inline-flex min-h-11 min-w-11 items-center justify-center text-[12px] tracking-[0.12em] uppercase lg:hidden" aria-controls="mobile-nav" aria-expanded="false">Menü</button>
+    <button id="mobile-menu-open" type="button" class="t-label -mr-2 inline-flex min-h-11 min-w-11 items-center justify-center text-[color:var(--color-ink)] lg:hidden" aria-controls="mobile-nav" aria-expanded="false">Menü</button>
   </nav>
 </header>
 
 <noscript>
   <style>#mobile-menu-open { display: none; }</style>
-  <details class="fixed top-2.5 right-2.5 z-50 lg:hidden">
-    <summary class="inline-flex min-h-11 cursor-pointer list-none items-center px-2 text-[12px] tracking-[0.12em] text-[color:var(--color-paper)] uppercase">Menü</summary>
-    <nav class="fixed inset-x-0 top-16 grid gap-4 bg-[color:var(--color-forest)] px-6 py-6 font-serif text-3xl text-[color:var(--color-paper)] shadow-xl" aria-label="Mobile Navigation ohne JavaScript">
-      <a href="/#geschichte">01 Geschichte</a>
-      <a href="/#st-anna">02 St. Anna</a>
-      <a href="/#entdecken">03 Landschaft</a>
-      <a href="/#dorfleben">04 Dorfleben</a>
-      <a href="/quellen">05 Quellen</a>
+  <details class="fixed top-1.5 right-3 z-50 lg:hidden">
+    <summary class="t-label inline-flex min-h-11 cursor-pointer list-none items-center px-2 text-[color:var(--color-ink)]">Menü</summary>
+    <nav class="fixed inset-x-0 top-14 grid gap-5 border-b border-white/15 bg-[color:var(--color-forest)] px-6 py-7 font-serif text-2xl text-[color:var(--color-paper)]" aria-label="Mobile Navigation ohne JavaScript">
+      {LINKS.map((link) => <a href={link.href}>{link.label}</a>)}
     </nav>
   </details>
 </noscript>
 
 <nav id="mobile-nav" class="fixed inset-0 z-50 overflow-y-auto overscroll-contain bg-[color:var(--color-forest)] px-6 pt-[max(1.25rem,env(safe-area-inset-top))] pb-[max(1.25rem,env(safe-area-inset-bottom))] text-[color:var(--color-paper)] lg:hidden" aria-label="Mobile Navigation" hidden>
-  <div class="flex justify-end"><button id="mobile-menu-close" type="button" class="inline-flex min-h-11 items-center justify-center px-2 text-sm tracking-widest uppercase">Schließen</button></div>
-  <div class="mt-10 grid gap-6 font-serif text-4xl sm:mt-20 sm:text-5xl">
-    <a class="grid grid-cols-[2rem_1fr] gap-2 py-1" href="/#geschichte"><span class="pt-2 font-sans text-xs text-white/35">01</span><span>Geschichte</span></a>
-    <a class="grid grid-cols-[2rem_1fr] gap-2 py-1" href="/#st-anna"><span class="pt-2 font-sans text-xs text-white/35">02</span><span>St. Anna</span></a>
-    <a class="grid grid-cols-[2rem_1fr] gap-2 py-1" href="/#entdecken"><span class="pt-2 font-sans text-xs text-white/35">03</span><span>Landschaft</span></a>
-    <a class="grid grid-cols-[2rem_1fr] gap-2 py-1" href="/#dorfleben"><span class="pt-2 font-sans text-xs text-white/35">04</span><span>Dorfleben</span></a>
-    <a class="grid grid-cols-[2rem_1fr] gap-2 py-1" href="/quellen"><span class="pt-2 font-sans text-xs text-white/35">05</span><span>Quellen</span></a>
+  <div class="flex items-center justify-between">
+    <VillageMark class="w-20 text-[color:var(--color-brass)]" />
+    <button id="mobile-menu-close" type="button" class="t-label -mr-2 inline-flex min-h-11 items-center justify-center px-2 text-white/70">Schließen</button>
+  </div>
+  <div class="mt-14 grid font-serif text-[2.25rem] leading-none sm:mt-20 sm:text-5xl">
+    {LINKS.map((link) => (
+      <a class="border-b border-white/12 py-5 first:border-t" href={link.href}>{link.label}</a>
+    ))}
   </div>
 </nav>
 

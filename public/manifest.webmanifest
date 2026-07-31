@@ -3,12 +3,12 @@
   "short_name": "Hofstetten",
   "description": "Ein unabhängiges Ortsporträt über Hofstetten im Landkreis Haßberge.",
   "id": "/",
-  "start_url": "/",
   "scope": "/",
-  "lang": "de-DE",
+  "lang": "de",
+  "start_url": "/",
   "display": "browser",
-  "background_color": "#f4f0e6",
-  "theme_color": "#17372d",
+  "background_color": "#f5f2ea",
+  "theme_color": "#f5f2ea",
   "icons": [
     {
       "src": "/icon-192.png",

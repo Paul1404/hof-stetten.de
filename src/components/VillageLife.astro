@@ -1,41 +1,72 @@
 ---
 import SourceRef from "./SourceRef.astro";
+
+const REGISTER = [
+  {
+    figure: "1965",
+    qualifier: null,
+    title: "Blaskapelle",
+    text: "Die 1965 gegründete Blaskapelle spielt bei Gottesdiensten, Festen und Konzerten in Hofstetten und der Umgebung. 2025 feierte der Verein sein 60-jähriges Bestehen.",
+    link: { href: "https://www.blaskapelle-hofstetten.de/", label: "blaskapelle-hofstetten.de" },
+    sources: [],
+  },
+  {
+    figure: "1883",
+    qualifier: "um",
+    title: "Freiwillige Feuerwehr",
+    text: "Die Stadt datiert die Gründung der Hofstettener Feuerwehr auf etwa 1883. Der Feuerwehr-Förderverein besteht seit 1983.",
+    link: null,
+    sources: [{ id: "stadt-hofstetten", label: "Quelle" }],
+  },
+  {
+    figure: "31",
+    qualifier: "Haus",
+    title: "Die alte Schule",
+    text: "Noch 1975/76 wurden hier Klassen der Königsberger Schule unterrichtet. Heute dient das Haus als Vereinsheim, Wahllokal und Versammlungsort. Der Spielplatz liegt direkt daneben.",
+    link: null,
+    sources: [
+      { id: "schulgeschichte", label: "Schulgeschichte" },
+      { id: "spielplatz", label: "Spielplatz" },
+    ],
+  },
+  {
+    figure: "2014",
+    qualifier: null,
+    title: "Das Dorfzeichen",
+    text: "Seine Teilung steht für Dorfstraße und Häuserzeilen. Beil und Sonnenblume verweisen auf Waldarbeit und die Kirchenpatronin St. Anna.",
+    link: null,
+    sources: [{ id: "stadt-hofstetten", label: "Quelle" }],
+  },
+];
 ---
-<section id="dorfleben" class="scroll-mt-16 py-28 sm:py-36">
-  <div class="page-shell">
-    <div class="max-w-4xl">
-      <p class="eyebrow">Ortsregister</p>
-      <h2 class="section-title mt-8">Vereine, Schule, Dorfzeichen.</h2>
+<section id="dorfleben" class="band scroll-mt-20">
+  <div class="shell">
+    <div class="marginal band-head">
+      <p class="t-label">Ortsregister</p>
+      <h2 class="t-title">Vereine, Schule, Dorfzeichen</h2>
     </div>
-    <div class="mt-20 grid border-t border-[color:var(--color-line)] lg:grid-cols-2">
-        <article class="grid grid-cols-[6.5rem_1fr] border-b border-[color:var(--color-line)] py-9 lg:border-r lg:pr-10">
-          <p class="font-serif text-3xl text-[color:var(--color-brass)]">1965</p>
-          <div><h3 class="text-3xl">Blaskapelle</h3>
-          <p class="mt-4 text-[15px] leading-7 text-[color:var(--color-ink-soft)]">Die 1965 gegründete Blaskapelle spielt bei Gottesdiensten, Festen und Konzerten in Hofstetten und der Umgebung. 2025 feierte der Verein sein 60-jähriges Bestehen.</p>
-          <a class="link-line mt-7 inline-flex min-h-11 items-center text-sm font-semibold text-[color:var(--color-rust)]" href="https://www.blaskapelle-hofstetten.de/" rel="external">Zur Blaskapelle</a>
+
+    <div class="mt-12 border-t border-[color:var(--color-line)] sm:mt-16">
+      {REGISTER.map((entry) => (
+        <article class="marginal border-b border-[color:var(--color-line)] py-7">
+          <p class="lg:pt-1">
+            {entry.qualifier && <span class="t-label mr-1.5 align-[0.35em]">{entry.qualifier}</span>}
+            <span class="t-figure text-[2rem] leading-none">{entry.figure}</span>
+          </p>
+          <div>
+            <h3 class="t-heading">{entry.title}</h3>
+            <p class="t-body mt-2.5 text-[color:var(--color-ink-soft)]">{entry.text}</p>
+            {entry.link && (
+              <a class="link-line mt-3.5 inline-flex min-h-8 items-center text-sm text-[color:var(--color-rust)]" href={entry.link.href} rel="external">{entry.link.label}</a>
+            )}
+            {entry.sources.length > 0 && (
+              <div class="mt-3.5 flex flex-wrap gap-x-5 gap-y-2">
+                {entry.sources.map((source) => <SourceRef id={source.id} label={source.label} />)}
+              </div>
+            )}
           </div>
         </article>
-        <article class="grid grid-cols-[6.5rem_1fr] border-b border-[color:var(--color-line)] py-9 lg:pl-10">
-          <p class="font-serif text-2xl text-[color:var(--color-brass)]">um 1883</p>
-          <div><h3 class="text-3xl">Freiwillige Feuerwehr</h3>
-          <p class="mt-4 text-[15px] leading-7 text-[color:var(--color-ink-soft)]">Die Stadt datiert die Gründung der Hofstettener Feuerwehr auf etwa 1883. Der Feuerwehr-Förderverein besteht seit 1983.</p>
-          <SourceRef id="stadt-hofstetten" />
-          </div>
-        </article>
-        <article class="grid grid-cols-[6.5rem_1fr] border-b border-[color:var(--color-line)] py-9 lg:border-r lg:pr-10">
-          <div><p class="text-[9px] font-bold uppercase tracking-[.12em] text-[color:var(--color-muted)]">Haus</p><p class="mt-1 font-serif text-4xl text-[color:var(--color-brass)]">31</p></div>
-          <div><h3 class="text-3xl">Die alte Schule</h3>
-          <p class="mt-4 text-[15px] leading-7 text-[color:var(--color-ink-soft)]">Noch 1975/76 wurden hier Klassen der Königsberger Schule unterrichtet. Heute dient das Haus als Vereinsheim, Wahllokal und Versammlungsort. Der Spielplatz liegt direkt daneben.</p>
-          <div class="flex flex-wrap gap-x-4"><SourceRef id="schulgeschichte" /><SourceRef id="spielplatz" /></div>
-          </div>
-        </article>
-        <article class="grid grid-cols-[6.5rem_1fr] border-b border-[color:var(--color-line)] py-9 lg:pl-10">
-          <p class="font-serif text-3xl text-[color:var(--color-brass)]">2014</p>
-          <div><h3 class="text-3xl">Das Dorfzeichen</h3>
-          <p class="mt-4 text-[15px] leading-7 text-[color:var(--color-ink-soft)]">Seine Teilung steht für Dorfstraße und Häuserzeilen. Beil und Sonnenblume verweisen auf Waldarbeit und die Kirchenpatronin St. Anna.</p>
-          <SourceRef id="stadt-hofstetten" />
-          </div>
-        </article>
+      ))}
     </div>
   </div>
 </section>

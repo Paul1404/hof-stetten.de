@@ -4,22 +4,23 @@ import hero from "../assets/images/st-anna.jpg";
 import PhotoCredit from "./PhotoCredit.astro";
 import VillageMark from "./VillageMark.astro";
 ---
-<section class="bg-[color:var(--color-paper)] pt-16">
-  <div class="page-shell py-14 sm:py-20 lg:py-24">
-    <div class="flex flex-wrap items-center justify-between gap-4 text-[10px] font-bold tracking-[.12em] text-[color:var(--color-muted)] uppercase">
-      <p>Kirchdorf in den Haßbergen</p>
-      <p>398 m · seit 1244 sicher belegt</p>
-    </div>
-    <h1 class="display-title mt-8 whitespace-nowrap text-[color:var(--color-ink)]">Hofstetten</h1>
-    <div class="mt-8 grid gap-6 border-t border-[color:var(--color-line)] pt-6 md:grid-cols-[1fr_auto] md:items-end">
-      <p class="prose-copy max-w-3xl">Hofstetten liegt auf halbem Weg zwischen Ebern und Haßfurt. Seit 1972 gehört das Kirchdorf zu Königsberg i.Bay.</p>
-      <VillageMark class="w-28 text-[color:var(--color-rust)] md:w-36" />
-    </div>
+<section>
+  <div class="shell pt-12 pb-10 sm:pt-16 sm:pb-14">
+    <VillageMark class="w-24 text-[color:var(--color-rust)]" />
+    <h1 class="t-display mt-6 whitespace-nowrap">Hofstetten</h1>
+    <p class="t-lede mt-8 text-[color:var(--color-ink-soft)]">
+      Ein Kirchdorf in den Haßbergen, auf halbem Weg zwischen Ebern und Haßfurt.
+      Seit 1972 gehört es zu Königsberg i.Bay.
+    </p>
   </div>
-  <figure class="page-shell pb-5">
-    <div class="photo-frame aspect-[4/3] border-y border-[color:var(--color-line)] sm:aspect-[16/9] lg:aspect-[2/1]">
-      <Picture src={hero} alt="Die Kapelle St. Anna in Hofstetten mit ihrem Dachreiter" widths={[640, 960, 1280, 1600]} sizes="(min-width: 1024px) 95vw, 100vw" formats={["avif", "webp"]} quality={76} loading="eager" fetchpriority="high" class="object-[50%_center]" />
+
+  <figure>
+    <div class="photo aspect-[4/3] border-y border-[color:var(--color-line)] sm:aspect-[16/9] lg:aspect-[21/9]">
+      <Picture src={hero} alt="Die Kapelle St. Anna in Hofstetten mit ihrem Dachreiter" widths={[640, 960, 1280, 1600, 1920]} sizes="100vw" formats={["avif", "webp"]} quality={76} loading="eager" fetchpriority="high" class="object-[50%_58%]" />
     </div>
-    <PhotoCredit author="Tilman2007" href="https://commons.wikimedia.org/wiki/File:Hofstetten_27_K%C3%B6nigsberg_in_Bayern_20201129_001.jpg" />
+    <div class="shell mt-2 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+      <PhotoCredit author="Tilman2007" href="https://commons.wikimedia.org/wiki/File:Hofstetten_27_K%C3%B6nigsberg_in_Bayern_20201129_001.jpg" />
+      <p class="t-label">398 m über NN · 138 Einwohner</p>
+    </div>
   </figure>
 </section>

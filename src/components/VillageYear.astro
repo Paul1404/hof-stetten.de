@@ -2,24 +2,23 @@
 import { VILLAGE_YEAR } from "../data/site";
 import SourceRef from "./SourceRef.astro";
 ---
-<section class="bg-[color:var(--color-paper-deep)] py-20 sm:py-24" aria-labelledby="dorfjahr-heading">
-  <div class="page-shell">
-    <div class="grid gap-8 lg:grid-cols-[.72fr_1.28fr] lg:items-end">
+<section class="band-tight bg-[color:var(--color-paper-deep)]" aria-labelledby="dorfjahr-heading">
+  <div class="shell">
+    <div class="marginal band-head">
+      <p class="t-label">Dorfjahr</p>
       <div>
-        <p class="eyebrow">Dorfjahr</p>
-        <h2 id="dorfjahr-heading" class="section-title mt-8">Was wiederkehrt.</h2>
-      </div>
-      <div class="max-w-xl lg:justify-self-end">
-        <p class="text-base leading-7 text-[color:var(--color-ink-soft)]">Maibaum, Wallfahrt, Brunnenfest und Annatag gehören zum wiederkehrenden Dorfjahr. Wann sie jeweils stattfinden, geben die örtlichen Vereine bekannt.</p>
-        <SourceRef id="stadt-hofstetten" />
+        <h2 id="dorfjahr-heading" class="t-title">Was jedes Jahr wiederkehrt</h2>
+        <p class="t-note mt-4 text-[color:var(--color-ink-soft)]">Maibaum, Wallfahrt, Brunnenfest und Annatag gehören zum wiederkehrenden Dorfjahr. Wann sie jeweils stattfinden, geben die örtlichen Vereine bekannt.</p>
+        <SourceRef id="stadt-hofstetten" class="mt-3.5" />
       </div>
     </div>
-    <ol role="list" class="mt-14 grid border-y border-[color:var(--color-line)] sm:grid-cols-2 lg:grid-cols-4">
-      {VILLAGE_YEAR.map((entry, index) => (
-        <li class:list={["py-7 sm:px-6", index > 0 && "border-t border-[color:var(--color-line)] sm:border-t-0 sm:border-l"]}>
-          <h3 class="font-serif text-3xl">{entry.title}</h3>
-          <p class="mt-4 text-[10px] font-bold tracking-[.12em] text-[color:var(--color-rust)] uppercase">{entry.date}</p>
-          <p class="mt-2 text-sm leading-6 text-[color:var(--color-ink-soft)]">{entry.detail}</p>
+
+    <ol role="list" class="mt-10 grid gap-x-8 gap-y-7 sm:mt-12 sm:grid-cols-2 lg:grid-cols-4">
+      {VILLAGE_YEAR.map((entry) => (
+        <li class="border-t border-[color:var(--color-line)] pt-5">
+          <p class="t-label">{entry.date}</p>
+          <h3 class="t-heading mt-2.5">{entry.title}</h3>
+          <p class="t-note mt-1.5 text-[color:var(--color-ink-soft)]">{entry.detail}</p>
         </li>
       ))}
     </ol>

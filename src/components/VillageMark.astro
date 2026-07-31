@@ -5,14 +5,15 @@ interface Props {
 
 const { class: className = "" } = Astro.props;
 ---
-<svg class={className} viewBox="0 0 96 24" fill="none" aria-hidden="true">
-  <path d="M2 12H94" stroke="currentColor" stroke-width="1.5" />
-  <g fill="currentColor" opacity=".88">
-    <rect x="13" y="4" width="12" height="5" /><rect x="29" y="3" width="9" height="6" />
-    <rect x="44" y="5" width="12" height="4" /><rect x="71" y="2" width="12" height="7" />
+<!-- Hofstetten in plan: the Dorfstraße, with the houses standing on both sides of it. -->
+<svg class={className} viewBox="0 0 96 22" fill="none" aria-hidden="true">
+  <g fill="currentColor">
+    <rect x="12" y="4" width="11" height="6" /><rect x="28" y="2" width="9" height="8" />
+    <rect x="43" y="5" width="12" height="5" /><rect x="70" y="3" width="12" height="7" />
   </g>
-  <g fill="currentColor" opacity=".58">
-    <rect x="7" y="15" width="13" height="6" /><rect x="31" y="15" width="12" height="7" />
-    <rect x="52" y="15" width="16" height="5" /><rect x="75" y="15" width="13" height="7" />
+  <rect x="1" y="10" width="94" height="1.6" fill="currentColor" />
+  <g fill="currentColor" opacity=".62">
+    <rect x="6" y="12" width="13" height="6" /><rect x="30" y="12" width="12" height="7" />
+    <rect x="51" y="12" width="16" height="5" /><rect x="74" y="12" width="13" height="7" />
   </g>
 </svg>

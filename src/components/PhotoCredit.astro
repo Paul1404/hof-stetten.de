@@ -3,9 +3,10 @@ interface Props {
   author: string;
   href: string;
   dark?: boolean;
+  class?: string;
 }
-const { author, href, dark = false } = Astro.props;
+const { author, href, dark = false, class: className = "" } = Astro.props;
 ---
-<a href={href} rel="external license" class:list={["mt-1 inline-flex min-h-6 items-center text-[11px] tracking-[0.06em] uppercase underline decoration-transparent underline-offset-4 hover:decoration-current", dark ? "text-white/60 hover:text-white" : "text-[color:var(--color-muted)] hover:text-[color:var(--color-rust)]"]}>
+<a href={href} rel="external license" class:list={["inline-flex min-h-6 items-center text-[0.6875rem] tracking-[0.04em] underline decoration-transparent underline-offset-4 hover:decoration-current", dark ? "text-white/45 hover:text-white/80" : "text-[color:var(--color-muted)] hover:text-[color:var(--color-ink)]", className]}>
   Foto: {author}, CC BY-SA 4.0
 </a>

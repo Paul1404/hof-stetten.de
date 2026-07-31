@@ -1,31 +1,46 @@
-<section class="py-28 sm:py-36">
-  <div class="page-shell grid gap-12 lg:grid-cols-[.65fr_1.35fr] lg:gap-20">
-    <div>
-      <p class="eyebrow">Der Ort</p>
-      <div class="mt-8 max-w-xs">
-        <p class="text-[10px] font-bold uppercase tracking-[.18em] text-[color:var(--color-muted)]">Der Ortsname bedeutet</p>
-        <p class="mt-3 font-serif text-3xl italic leading-tight text-[color:var(--color-forest-soft)]">bei den Hofstätten</p>
+---
+import SourceRef from "./SourceRef.astro";
+
+const FACTS = [
+  { term: "Stadt", value: "Königsberg i.Bay." },
+  { term: "Landkreis", value: "Haßberge" },
+  { term: "Postleitzahl", value: "97486" },
+  { term: "Vorwahl", value: "09525" },
+];
+---
+<section class="band">
+  <div class="shell">
+    <div class="marginal band-head">
+      <p class="t-label">Der Ort</p>
+      <h2 class="t-title">Ein Straßendorf</h2>
+    </div>
+
+    <div class="marginal mt-10 sm:mt-12">
+      <div class="lg:pt-1">
+        <p class="t-label">Ortsname</p>
+        <p class="mt-2 font-serif text-[1.35rem] leading-snug font-light italic text-[color:var(--color-ink-soft)]">bei den Hofstätten</p>
+      </div>
+      <div class="grid gap-x-12 gap-y-6 text-[color:var(--color-ink-soft)] sm:grid-cols-2">
+        <p class="t-body">Die Häuser stehen entlang der Dorfstraße. In der Mitte liegen die Kapelle St. Anna und die ehemalige Schule in Hofstetten 31, die heute als Vereinsheim genutzt wird.</p>
+        <p class="t-body">Zum 1. Januar 2021 waren 138 Einwohner gemeldet. Hofstetten und der Weiler Bühl gehören kirchlich zu Jesserndorf. Im Ort sind unter anderem Blaskapelle, Feuerwehr und Jagdgenossenschaft aktiv.</p>
       </div>
     </div>
-    <div>
-      <h2 class="section-title max-w-4xl">Hofstetten ist ein Straßendorf.</h2>
-      <div class="mt-10 grid gap-8 text-[color:var(--color-ink-soft)] sm:grid-cols-2">
-        <p class="prose-copy">Die Häuser stehen entlang der Dorfstraße. In der Mitte liegen die Kapelle St. Anna und die ehemalige Schule in Hofstetten 31, die heute als Vereinsheim genutzt wird.</p>
-        <p class="prose-copy">Zum 1. Januar 2021 waren 138 Einwohner gemeldet. Hofstetten und der Weiler Bühl gehören kirchlich zu Jesserndorf. Im Ort sind unter anderem Blaskapelle, Feuerwehr und Jagdgenossenschaft aktiv.</p>
-      </div>
-      <dl class="mt-14 grid grid-cols-2 border-y border-[color:var(--color-line)] sm:grid-cols-4">
-        <div class="border-b border-[color:var(--color-line)] py-5 pr-4 sm:border-r sm:border-b-0 sm:px-5 sm:first:pl-0"><dt class="text-[10px] uppercase tracking-widest text-[color:var(--color-muted)]">Stadt</dt><dd class="mt-2 font-serif text-xl">Königsberg i.Bay.</dd></div>
-        <div class="border-b border-l border-[color:var(--color-line)] py-5 pl-4 sm:border-r sm:border-b-0 sm:border-l-0 sm:px-5"><dt class="text-[10px] uppercase tracking-widest text-[color:var(--color-muted)]">Landkreis</dt><dd class="mt-2 font-serif text-xl">Haßberge</dd></div>
-        <div class="py-5 pr-4 sm:border-r sm:px-5"><dt class="text-[10px] uppercase tracking-widest text-[color:var(--color-muted)]">Postleitzahl</dt><dd class="mt-2 font-serif text-xl">97486</dd></div>
-        <div class="border-l border-[color:var(--color-line)] py-5 pl-4 sm:border-l-0 sm:px-5 sm:last:pr-0"><dt class="text-[10px] uppercase tracking-widest text-[color:var(--color-muted)]">Vorwahl</dt><dd class="mt-2 font-serif text-xl">09525</dd></div>
-      </dl>
-      <aside class="mt-16 grid gap-5 border-l-2 border-[color:var(--color-rust)] py-2 pl-6 sm:grid-cols-[8rem_1fr] sm:items-center sm:pl-8">
-        <p class="text-[11px] font-bold tracking-[.14em] text-[color:var(--color-rust)] uppercase">Blatt 1870</p>
+
+    <dl class="mt-14 grid grid-cols-2 gap-x-8 gap-y-6 border-t border-[color:var(--color-line)] pt-6 sm:grid-cols-4">
+      {FACTS.map((fact) => (
         <div>
-          <p class="font-serif text-2xl leading-snug text-[color:var(--color-forest)]">Der amtliche Visitationsbericht beschreibt Hofstetten als Ort mit „einer einzigen Hauptstraße“.</p>
-          <a class="source-ref mt-3" href="/quellen#visitation-1870">Zum Bericht</a>
+          <dt class="t-label">{fact.term}</dt>
+          <dd class="t-figure mt-1.5 text-[1.15rem]">{fact.value}</dd>
         </div>
-      </aside>
+      ))}
+    </dl>
+
+    <div class="marginal mt-16 border-t border-[color:var(--color-line)] pt-6 sm:mt-20">
+      <p class="t-label lg:pt-2">Visitationsbericht 1870</p>
+      <div>
+        <p class="t-lede max-w-2xl text-[color:var(--color-ink)]">Der amtliche Bericht beschreibt Hofstetten als Ort mit „einer einzigen Hauptstraße“.</p>
+        <SourceRef id="visitation-1870" label="Zum Bericht" class="mt-4" />
+      </div>
     </div>
   </div>
 </section>

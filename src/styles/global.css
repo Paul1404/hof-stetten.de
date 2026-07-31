@@ -1,21 +1,29 @@
 @import "tailwindcss";
-@import "@fontsource-variable/manrope/wght.css";
 @import "@fontsource-variable/newsreader/wght.css";
+@import "@fontsource-variable/newsreader/wght-italic.css";
+@import "@fontsource-variable/archivo/wght.css";
+
+/* Hofstetten is set like a printed village chronicle: the content — years,
+   figures, photographs — carries the weight, and the headings stay quiet.
+   Structure comes from hairlines and a steady margin column, not from padding. */
 
 @theme {
-  --color-paper: #f3efe4;
-  --color-paper-deep: #e6dece;
-  --color-forest: #294638;
-  --color-forest-soft: #3b594b;
-  --color-ink: #202522;
-  --color-ink-soft: #48504b;
-  --color-muted: #59615c;
-  --color-brass: #c29a62;
-  --color-brass-light: #d9bc90;
-  --color-rust: #8b4434;
-  --color-line: #d8cfbd;
-  --font-serif: "Newsreader Variable", Georgia, serif;
-  --font-sans: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+  --color-paper: #f5f2ea;
+  --color-paper-deep: #ebe5d6;
+  --color-ink: #1b1e1c;
+  --color-ink-soft: #4a514c;
+  --color-muted: #787e78;
+
+  /* One dark surface, one accent. Brass only ever appears on the dark green. */
+  --color-forest: #23402f;
+  --color-rust: #8a4634;
+  --color-brass: #cbb188;
+
+  --color-line: #d9d1bf;
+  --color-line-faint: #e7e0d0;
+
+  --font-serif: "Newsreader Variable", Georgia, "Times New Roman", serif;
+  --font-sans: "Archivo Variable", ui-sans-serif, system-ui, sans-serif;
 }
 
 html {
@@ -24,34 +32,37 @@ html {
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
   margin: 0;
   color: var(--color-ink);
   background: var(--color-paper);
   font-family: var(--font-sans);
-  font-feature-settings: "ss01", "cv11";
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
+
+/* Keeps the footer on the bottom edge of short pages (Impressum, 404). */
+main { flex: 1 0 auto; }
 
 @layer base {
   h1,
   h2,
   h3 {
     font-family: var(--font-serif);
-    font-weight: 440;
-    letter-spacing: -0.035em;
+    font-weight: 400;
     text-wrap: balance;
   }
 
   p { text-wrap: pretty; }
 }
 
-::selection { background: rgb(180 123 50 / 0.25); }
+::selection { background: rgb(138 70 52 / 0.16); }
 
 :focus-visible {
-  outline: 2px solid var(--color-paper);
-  outline-offset: 4px;
-  box-shadow: 0 0 0 4px var(--color-forest);
+  outline: 2px solid var(--color-ink);
+  outline-offset: 3px;
 }
 
 .skip-link {
@@ -66,155 +77,153 @@ body {
 }
 .skip-link:focus { transform: none; }
 
-.page-shell {
-  width: min(100% - 2rem, 86rem);
+/* ---- Measure ------------------------------------------------------------ */
+
+.shell {
+  width: min(100% - 2rem, 64rem);
   margin-inline: auto;
 }
 
-.page-shell > *,
-.page-shell > * > * {
-  min-width: 0;
+@media (min-width: 48rem) {
+  .shell { width: min(100% - 4rem, 64rem); }
 }
 
-.eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  color: var(--color-rust);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-.eyebrow::before {
-  width: 0.42rem;
-  height: 0.42rem;
-  content: "";
-  background: var(--color-rust);
-}
+.shell > *,
+.shell > * > * { min-width: 0; }
 
-.display-title {
-  font-size: clamp(3.8rem, 12.5vw, 10rem);
-  line-height: 0.8;
-  letter-spacing: -0.065em;
+/* Consistent vertical rhythm. Every band gets the same interval. */
+.band { padding-block: clamp(3.5rem, 6vw, 5.5rem); }
+.band-tight { padding-block: clamp(2.75rem, 4.5vw, 4rem); }
+
+/* ---- Type scale --------------------------------------------------------- */
+
+.t-display {
+  font-size: clamp(3.4rem, 12vw, 8rem);
+  font-weight: 370;
+  line-height: 0.86;
+  letter-spacing: -0.045em;
   hyphens: none;
   overflow-wrap: normal;
 }
 
-.section-title {
-  font-size: clamp(3rem, 6vw, 5.6rem);
-  line-height: 0.92;
-  hyphens: none;
-  overflow-wrap: normal;
+.t-title {
+  font-size: clamp(1.7rem, 3.2vw, 2.5rem);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.018em;
 }
 
-.prose-copy {
-  max-width: 42rem;
+.t-heading {
   font-family: var(--font-serif);
-  font-size: clamp(1.12rem, 1.5vw, 1.28rem);
+  font-size: clamp(1.2rem, 1.5vw, 1.4rem);
+  font-weight: 480;
+  line-height: 1.25;
+}
+
+.t-lede {
+  max-width: 34rem;
+  font-family: var(--font-serif);
+  font-size: clamp(1.18rem, 1.9vw, 1.5rem);
+  font-weight: 350;
+  line-height: 1.45;
+}
+
+.t-body {
+  max-width: 36rem;
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
   line-height: 1.62;
 }
 
-.street-rule {
-  height: 1px;
-  background: currentColor;
-  opacity: 0.32;
+.t-note {
+  max-width: 32rem;
+  font-size: 0.9375rem;
+  line-height: 1.6;
 }
 
-.history-entry {
-  position: relative;
-  display: grid;
-  grid-template-columns: 6.5rem minmax(0, 1fr);
-}
-
-.history-entry::after {
-  position: absolute;
-  top: 2.45rem;
-  left: calc(6.5rem - 0.3rem);
-  width: 0.55rem;
-  height: 0.55rem;
-  border: 2px solid var(--color-paper-deep);
-  background: var(--color-rust);
-  content: "";
-}
-
-.history-record {
-  border-left: 1px solid var(--color-line);
-  padding-left: 1.5rem;
-}
-
-@media (min-width: 40rem) {
-  .history-entry { grid-template-columns: 9rem minmax(0, 1fr); }
-  .history-entry::after { left: calc(9rem - 0.3rem); }
-  .history-record { padding-left: clamp(2rem, 5vw, 5rem); }
-}
-
-.link-line {
-  text-decoration-line: underline;
-  text-decoration-color: color-mix(in srgb, currentColor 42%, transparent);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.28em;
-  transition: text-decoration-color 180ms ease, text-decoration-thickness 180ms ease;
-}
-.link-line:hover,
-.link-line:focus-visible {
-  text-decoration-color: currentColor;
-  text-decoration-thickness: 2px;
-}
-
-.source-ref {
-  display: inline-flex;
-  margin-top: 0.6rem;
-  color: var(--color-rust);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-decoration: underline;
-  text-decoration-color: color-mix(in srgb, currentColor 42%, transparent);
-  text-underline-offset: 0.25em;
+.t-label {
+  color: var(--color-muted);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
 }
 
-.source-ref:hover { text-decoration-color: currentColor; }
-.source-ref-dark { color: rgb(255 255 255 / 0.72); }
-.population-bar { width: var(--bar-width); }
-
-.menu-open,
-.menu-open body {
-  overflow: hidden;
+/* Years, house numbers, counts. Content, so it is set in ink, not in accent. */
+.t-figure {
+  font-family: var(--font-serif);
+  font-weight: 340;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
 }
 
-.photo-frame {
-  position: relative;
+/* ---- The margin column -------------------------------------------------- */
+
+/* Labels, years and source notes sit in the margin the way a scholarly
+   edition sets its apparatus. One pattern, used everywhere. */
+.marginal {
+  display: grid;
+  gap: 0.75rem;
+}
+
+@media (min-width: 62rem) {
+  .marginal {
+    grid-template-columns: 10.5rem minmax(0, 1fr);
+    gap: 0 3rem;
+  }
+}
+
+.band-head {
+  border-top: 1px solid var(--color-line);
+  padding-top: 1.5rem;
+}
+
+/* ---- Links -------------------------------------------------------------- */
+
+.link-line {
+  text-decoration-line: underline;
+  text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+  transition: text-decoration-color 160ms ease;
+}
+.link-line:hover,
+.link-line:focus-visible { text-decoration-color: currentColor; }
+
+.source-ref {
+  display: inline-flex;
+  color: var(--color-muted);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, currentColor 30%, transparent);
+  text-underline-offset: 0.25em;
+  text-transform: uppercase;
+}
+.source-ref:hover { color: var(--color-rust); text-decoration-color: currentColor; }
+.source-ref-dark { color: rgb(255 255 255 / 0.55); }
+.source-ref-dark:hover { color: rgb(255 255 255 / 0.9); }
+
+/* ---- Figures ------------------------------------------------------------ */
+
+/* The placeholder tints from the surrounding text colour, so a figure on the
+   dark green band does not flash a light block while its image loads. */
+.photo {
+  display: block;
   overflow: hidden;
-  background: var(--color-paper-deep);
+  background: color-mix(in srgb, currentColor 9%, transparent);
 }
-.photo-frame::after {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  content: "";
-  box-shadow: inset 0 0 0 1px rgb(244 240 230 / 0.25);
-}
-.photo-frame img {
+.photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.rule {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--color-line) 12%, var(--color-line) 88%, transparent);
-}
+.population-bar { width: var(--bar-width); }
 
-@media (max-width: 700px) {
-  .page-shell { width: min(100% - 1.25rem, 86rem); }
-  .display-title { font-size: clamp(3.65rem, 18vw, 6.5rem); line-height: 0.82; }
-}
-
-@media (min-width: 48rem) {
-  .page-shell { width: min(100% - 4rem, 86rem); }
-}
+.menu-open,
+.menu-open body { overflow: hidden; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

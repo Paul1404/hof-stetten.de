@@ -1,46 +1,45 @@
 ---
 import { HISTORY, POPULATION } from "../data/site";
 import SourceRef from "./SourceRef.astro";
+
+const peak = Math.max(...POPULATION.map((entry) => entry.people));
 ---
-<section id="geschichte" class="bg-[color:var(--color-paper-deep)] py-24 sm:py-28">
-  <div class="page-shell">
-    <div class="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
+<section id="geschichte" class="band scroll-mt-20 bg-[color:var(--color-paper-deep)]">
+  <div class="shell">
+    <div class="marginal band-head">
+      <p class="t-label">Chronik</p>
       <div>
-        <p class="eyebrow">Chronik</p>
-        <h2 class="section-title mt-8">Zur Geschichte Hofstettens.</h2>
+        <h2 class="t-title">Von 1135 bis heute</h2>
+        <p class="t-body mt-5 text-[color:var(--color-ink-soft)]">Die Nennung von 1135 ist indirekt. In einer Urkunde von 1244 erscheint der Ort als „Houesteten“. Ein Visitationsbericht von 1870 dokumentiert die Hauptstraße, die Schule, die Felder und die wirtschaftliche Lage der damaligen Gemeinde.</p>
       </div>
-      <p class="prose-copy max-w-xl justify-self-end text-[color:var(--color-ink-soft)]">Die Nennung von 1135 ist indirekt. In einer Urkunde von 1244 erscheint der Ort als „Houesteten“. Ein Visitationsbericht von 1870 dokumentiert die Hauptstraße, die Schule, die Felder und die wirtschaftliche Lage der damaligen Gemeinde.</p>
     </div>
 
-    <ol role="list" class="mt-20 border-t border-[color:var(--color-line)]">
+    <ol role="list" class="mt-12 border-t border-[color:var(--color-line)] sm:mt-16">
       {HISTORY.map((entry) => (
-        <li class="history-entry border-b border-[color:var(--color-line)]">
-          <p class="py-9 pr-5 font-serif text-4xl text-[color:var(--color-rust)] sm:text-5xl">{entry.year}</p>
-          <div class:list={["history-record grid gap-4 py-9 md:grid-cols-[.75fr_1.25fr] md:gap-12", entry.year === "1744" && "bg-[color:var(--color-paper)]/35"]}>
-            <h3 class="font-serif text-2xl">{entry.title}</h3>
-            <div>
-              <p class="prose-copy !text-[1.05rem] text-[color:var(--color-ink-soft)]">{entry.text}</p>
-              <SourceRef id={entry.sourceId} />
-            </div>
+        <li class="marginal border-b border-[color:var(--color-line)] py-7">
+          <p class="t-figure text-[2rem] leading-none lg:pt-1">{entry.year}</p>
+          <div>
+            <h3 class="t-heading">{entry.title}</h3>
+            <p class="t-body mt-2.5 text-[color:var(--color-ink-soft)]">{entry.text}</p>
+            <SourceRef id={entry.sourceId} class="mt-3.5" />
           </div>
         </li>
       ))}
     </ol>
 
-    <section class="mt-20 border-t border-[color:var(--color-line)] pt-12" aria-labelledby="einwohner-heading">
-      <div class="grid gap-8 lg:grid-cols-[.7fr_1.3fr]">
-        <div>
-          <p class="eyebrow">Einwohner</p>
-          <h3 id="einwohner-heading" class="mt-6 font-serif text-4xl">Hofstetten im Wandel.</h3>
-          <p class="mt-5 max-w-md text-sm leading-6 text-[color:var(--color-ink-soft)]">Die Reihe zählt den Gemeindeteil Hofstetten. Die Zahl von 1870 in der Chronik umfasst dagegen zusätzlich Bühl.</p>
-          <div class="mt-4 flex gap-4"><SourceRef id="einwohner-historisch" /><SourceRef id="einwohner-2021" label="Stand 2021" /></div>
-        </div>
-        <ol role="list" class="grid gap-4" aria-label="Historische Einwohnerzahlen">
+    <section class="marginal mt-16 border-t border-[color:var(--color-line)] pt-6 sm:mt-20" aria-labelledby="einwohner-heading">
+      <p class="t-label lg:pt-2">Einwohner</p>
+      <div>
+        <h3 id="einwohner-heading" class="t-title">Einwohner seit 1871</h3>
+        <p class="t-note mt-4 text-[color:var(--color-ink-soft)]">Die Reihe zählt den Gemeindeteil Hofstetten. Die Zahl von 1870 in der Chronik umfasst dagegen zusätzlich Bühl.</p>
+        <div class="mt-3 flex flex-wrap gap-x-5 gap-y-2"><SourceRef id="einwohner-historisch" /><SourceRef id="einwohner-2021" label="Stand 2021" /></div>
+
+        <ol role="list" class="mt-9 max-w-2xl" aria-label="Historische Einwohnerzahlen">
           {POPULATION.map((entry) => (
-            <li class="grid grid-cols-[3.5rem_1fr_3rem] items-center gap-4 text-sm">
-              <span class="font-medium">{entry.year}</span>
-              <span class="h-1.5 bg-[color:var(--color-line)]" aria-hidden="true"><span class="population-bar block h-full bg-[color:var(--color-brass)]" style={`--bar-width:${Math.round((entry.people / 187) * 100)}%`}></span></span>
-              <span class="text-right font-serif text-xl text-[color:var(--color-rust)]">{entry.people}</span>
+            <li class="grid grid-cols-[2.75rem_1fr_2.5rem] items-center gap-4 border-t border-[color:var(--color-line-faint)] py-3">
+              <span class="t-figure text-[0.9375rem] text-[color:var(--color-muted)]">{entry.year}</span>
+              <span class="h-[3px] bg-[color:var(--color-line)]" aria-hidden="true"><span class="population-bar block h-full bg-[color:var(--color-forest)]" style={`--bar-width:${Math.round((entry.people / peak) * 100)}%`}></span></span>
+              <span class="t-figure text-right text-[1.125rem]">{entry.people}</span>
             </li>
           ))}
         </ol>

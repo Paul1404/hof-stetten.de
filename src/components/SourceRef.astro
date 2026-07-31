@@ -2,8 +2,10 @@
 interface Props {
   id: string;
   label?: string;
+  dark?: boolean;
+  class?: string;
 }
 
-const { id, label = "Quelle" } = Astro.props;
+const { id, label = "Quelle", dark = false, class: className = "" } = Astro.props;
 ---
-<a class="source-ref" href={`/quellen#${id}`}>{label}</a>
+<a class:list={["source-ref", dark && "source-ref-dark", className]} href={`/quellen#${id}`}>{label}</a>
