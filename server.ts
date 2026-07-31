@@ -1,4 +1,5 @@
 import { join } from "node:path";
+import { decodeRequestPath, safeFilePath } from "./server-paths";
 
 const DIST = join(import.meta.dir, "dist");
 const PORT = Number(process.env.PORT) || 4321;
@@ -43,7 +44,9 @@ const headersFor = (pathname: string): HeadersInit => {
 };
 
 const tryFile = async (path: string) => {
-  const file = Bun.file(join(DIST, path));
+  const filePath = safeFilePath(DIST, path);
+  if (!filePath) return null;
+  const file = Bun.file(filePath);
   return (await file.exists()) ? file : null;
 };
 
@@ -67,7 +70,25 @@ Bun.serve({
   hostname: HOST,
   async fetch(req) {
     const url = new URL(req.url);
-    const pathname = decodeURIComponent(url.pathname);
+    const pathname = decodeRequestPath(url.pathname);
+
+    if (!pathname) {
+      return new Response("Bad Request", {
+        status: 400,
+        headers: { ...SECURITY_HEADERS, "cache-control": CACHE_NONE },
+      });
+    }
+
+    if (req.method !== "GET" && req.method !== "HEAD") {
+      return new Response("Method Not Allowed", {
+        status: 405,
+        headers: {
+          ...SECURITY_HEADERS,
+          allow: "GET, HEAD",
+          "cache-control": CACHE_NONE,
+        },
+      });
+    }
 
     if (url.hostname === "www.hof-stetten.de") {
       return new Response(null, {

@@ -8,6 +8,7 @@
     "start": "bun run server.ts",
     "build": "astro build",
     "preview": "astro preview",
+    "test": "bun test",
     "check": "astro check",
     "icons": "bun run scripts/generate-icons.ts",
     "og": "bun run scripts/generate-og-image.ts",
