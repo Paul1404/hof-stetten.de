@@ -10,18 +10,23 @@ export const SITE = {
 export const HISTORY = [
   {
     year: "1135",
-    title: "Ein Name tritt hervor",
+    title: "Eine indirekte Spur",
     text: "Ein Hermann von „hoffenstetten“ erscheint als Zeuge in einer Urkunde des Bamberger Bischofs Otto. Die Zuordnung gilt als indirekte erste Nennung des Ortes.",
   },
   {
     year: "1244",
-    title: "Houesteten",
-    text: "Ludwig von Raueneck übergibt dem Würzburger Bischof Güter in „Houesteten“. Der Ort ist nun ausdrücklich in einer Urkunde greifbar.",
+    title: "„Houesteten“ wird genannt",
+    text: "Ludwig von Raueneck übergibt dem Würzburger Bischof Güter in „Houesteten“. Damit ist der Ort ausdrücklich in einer Urkunde greifbar. Nach einer vermuteten Wüstungsperiode war zeitweise auch der Name „Neudorf“ gebräuchlich.",
   },
   {
     year: "1744",
     title: "St. Anna entsteht",
     text: "Die spätbarocke Kapelle erhält ihre heutige Gestalt. Das Sandsteinportal trägt die Jahreszahl 1744, das Relief der Vierzehn Nothelfer wird auf 1751 datiert.",
+  },
+  {
+    year: "1870",
+    title: "Eine Straße, 171 Seelen",
+    text: "Bei einer amtlichen Visitation zählt die Landgemeinde Hofstetten mit dem Weiler Bühl 171 Einwohner. Der Bericht beschreibt eine einzige Hauptstraße mit gepflasterten, sauber gehaltenen Gräben, aber auch karge Felder und eine Gemeinde ohne eigenes Vermögen.",
   },
   {
     year: "1965",
@@ -64,6 +69,31 @@ export const SOURCES = [
     title: "Blaskapelle Hofstetten e.V.",
     detail: "Vereinsseite und aktueller Veranstaltungskalender.",
     href: "https://www.blaskapelle-hofstetten.de/",
+  },
+  {
+    title: "Landgemeinde Hofstetten im Jahr 1870",
+    detail: "Albin Schorn, inFranken.de, 6. Dezember 2021. Auswertung des Visitationsberichts des königlichen Bezirksamts Ebern vom 11. Juli 1870.",
+    href: "https://www.infranken.de/lk/gem/hassberge/landgemeinde-hofstetten-im-jahr-1870-art-5349176",
+  },
+  {
+    title: "Stadt Königsberg i.Bay.: Kirchen und Pfarrämter",
+    detail: "Amtliche Zuordnung von Jesserndorf mit Hofstetten und Bühl.",
+    href: "https://koenigsberg.de/kirchen-pfarraemter?field_districts_target_id=All&field_religion_target_id=231",
+  },
+  {
+    title: "Königsberger Nachrichten, Ausgabe 09/2019",
+    detail: "Amtlicher Nachweis der ehemaligen Schule als Wahlraum für Hofstetten, Köslau und Bühl sowie der Anschrift Hofstetten 31.",
+    href: "https://www.koenigsberg.de/sites/default/files/2019-05/09-2019.docx1_.pdf",
+  },
+  {
+    title: "Königsberger Nachrichten, Ausgabe 06/2026",
+    detail: "Amtliche Einladung der Jagdgenossenschaft Hofstetten zur Jahreshauptversammlung in der ehemaligen Schule.",
+    href: "https://koenigsberg.de/wp-content/uploads/2026/03/Amtsblatt-06-2026.pdf",
+  },
+  {
+    title: "Stadt Königsberg i.Bay.: Feuerwehren",
+    detail: "Übersicht der Stützpunktfeuerwehr Königsberg und der Feuerwehren in den Stadtteilen, darunter Hofstetten.",
+    href: "https://koenigsberg.de/home-rathaus-gemeinde/stadt-gemeinde/feuerwehren/",
   },
   {
     title: "Naturpark Haßberge und Wikimedia Commons",
