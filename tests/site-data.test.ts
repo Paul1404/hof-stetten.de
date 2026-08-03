@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { HISTORY, PHOTO_CREDITS, POPULATION, SOURCES, VILLAGE_YEAR } from "../src/data/site";
+import { AERIAL_NOTES, HISTORY, PHOTO_CREDITS, POPULATION, SOURCES, VILLAGE_YEAR } from "../src/data/site";
 
 describe("editorial data", () => {
   const sourceIds = SOURCES.map((source) => source.id);
@@ -39,6 +39,21 @@ describe("editorial data", () => {
     for (const entry of VILLAGE_YEAR) {
       expect(entry.title.length).toBeGreaterThan(0);
       expect(`${entry.date} ${entry.detail}`).not.toMatch(/20\d{2}/);
+      expect(entry.dialX).toBeGreaterThan(0);
+      expect(entry.dialX).toBeLessThan(100);
+      expect(entry.dialY).toBeGreaterThan(0);
+      expect(entry.dialY).toBeLessThan(100);
+    }
+  });
+
+  test("keeps aerial annotations positioned and sourced", () => {
+    expect(AERIAL_NOTES.length).toBeGreaterThanOrEqual(4);
+    for (const note of AERIAL_NOTES) {
+      expect(note.x).toBeGreaterThan(0);
+      expect(note.x).toBeLessThan(100);
+      expect(note.y).toBeGreaterThan(0);
+      expect(note.y).toBeLessThan(100);
+      expect(sourceIds).toContain(note.sourceId);
     }
   });
 });

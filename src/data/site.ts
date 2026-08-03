@@ -24,7 +24,7 @@ export const HISTORY = [
     year: "1744",
     title: "Bau der Kapelle St. Anna",
     text: "Die spätbarocke Kapelle erhält ihre heutige Gestalt. Das Sandsteinportal trägt die Jahreszahl 1744, das Relief der Vierzehn Nothelfer wird auf 1751 datiert.",
-    sourceId: "denkmalliste",
+    sourceId: "stadt-hofstetten",
   },
   {
     year: "1870",
@@ -50,10 +50,53 @@ export const POPULATION = [
 ] as const;
 
 export const VILLAGE_YEAR = [
-  { date: "30. April", title: "Maibaumaufstellen", detail: "in der Dorfmitte" },
-  { date: "Im Frühjahr", title: "Wallfahrt", detail: "zum Zeiler Käppele" },
-  { date: "Mitte Juli", title: "Brunnenfest", detail: "in Hofstetten" },
-  { date: "Rund um St. Anna", title: "Annatag", detail: "mit Prozession an der Kapelle" },
+  { date: "Im Frühjahr", title: "Wallfahrt", detail: "zum Zeiler Käppele", season: "Frühjahr", dialX: 82.7, dialY: 29.6 },
+  { date: "30. April", title: "Maibaumaufstellen", detail: "in der Dorfmitte", season: "Frühjahr", dialX: 88.5, dialY: 50 },
+  { date: "Mitte Juli", title: "Brunnenfest", detail: "in Hofstetten", season: "Sommer", dialX: 58, dialY: 87.7 },
+  { date: "Rund um St. Anna", title: "Annatag", detail: "mit Prozession an der Kapelle", season: "Sommer", dialX: 40.7, dialY: 87.3 },
+] as const;
+
+export const AERIAL_NOTES = [
+  {
+    id: "dorfstrasse",
+    number: "01",
+    label: "Straßendorf",
+    title: "Die Dorfstraße",
+    text: "Die Häuser folgen einer einzigen, gut lesbaren Linie. Diese Form prägt den Ort bis heute und findet sich auch im Dorfwappen wieder.",
+    x: 64,
+    y: 61,
+    sourceId: "stadt-hofstetten",
+  },
+  {
+    id: "st-anna-aerial",
+    number: "02",
+    label: "Dorfmitte",
+    title: "St. Anna",
+    text: "Der kleine weiße Bau mit Dachreiter steht nahe der Dorfstraße. Kapelle und ehemalige Schule bilden die historische Mitte Hofstettens.",
+    x: 44.5,
+    y: 52,
+    sourceId: "denkmalliste",
+  },
+  {
+    id: "flur",
+    number: "03",
+    label: "Landschaft",
+    title: "Die hohe Flur",
+    text: "Äcker und Wiesen reichen bis unmittelbar an die Häuser. Schon der Visitationsbericht von 1870 beschreibt die hohe, karge Lage der Felder.",
+    x: 61,
+    y: 22,
+    sourceId: "visitation-1870",
+  },
+  {
+    id: "ortsrand",
+    number: "04",
+    label: "Übergang",
+    title: "Gärten, Höfe, Wald",
+    text: "Am südlichen Ortsrand lösen Gärten und Obstbäume die dichte Häuserzeile auf. Dahinter beginnt die bewaldete Landschaft der Haßberge.",
+    x: 70,
+    y: 78,
+    sourceId: "stadt-hofstetten",
+  },
 ] as const;
 
 export const SOURCES = [

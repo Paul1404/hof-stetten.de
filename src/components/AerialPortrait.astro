@@ -1,0 +1,102 @@
+---
+import { Picture } from "astro:assets";
+import aerial from "../assets/images/hofstetten-luftbild-herbst.webp";
+import { AERIAL_NOTES } from "../data/site";
+import PhotoCredit from "./PhotoCredit.astro";
+import SourceRef from "./SourceRef.astro";
+---
+<section id="luftbild" class="aerial-portrait band scroll-mt-20" aria-labelledby="luftbild-heading">
+  <div class="shell">
+    <div class="marginal border-t border-white/20 pt-6">
+      <p class="t-label !text-[color:var(--color-brass)]">Im Luftbild</p>
+      <div>
+        <h2 id="luftbild-heading" class="t-title">Das Dorf lesen</h2>
+        <p class="t-lede mt-5 text-white/72">Eine Straße, eine Mitte, ringsum Flur. Das Luftbild zeigt die Form Hofstettens deutlicher als jeder Plan.</p>
+      </div>
+    </div>
+
+    <div class="aerial-layout mt-12 sm:mt-16">
+      <figure class="aerial-figure">
+        <div class="aerial-image">
+          <Picture
+            src={aerial}
+            alt="Luftbild von Hofstetten mit der langgestreckten Dorfstraße, umgebenden Feldern und dem bewaldeten Ortsrand"
+            widths={[720, 1080, 1440, 1920]}
+            sizes="(min-width: 1024px) 68vw, 100vw"
+            formats={["avif", "webp"]}
+            quality={82}
+          />
+          <div class="aerial-shade" aria-hidden="true"></div>
+          <svg class="aerial-road" viewBox="0 0 100 56.25" preserveAspectRatio="none" aria-hidden="true">
+            <path pathLength="1" d="M 19 23 C 33 26 43 29 54 31.5 C 65 34 78 37 94 41.5" />
+          </svg>
+          <div class="aerial-markers">
+            {AERIAL_NOTES.map((note) => (
+              <button
+                class="aerial-marker"
+                type="button"
+                style={`--marker-x:${note.x}%;--marker-y:${note.y}%`}
+                data-aerial-target={note.id}
+                aria-label={`${note.number}, ${note.title}`}
+                aria-pressed={note.number === "01" ? "true" : "false"}
+              >
+                <span>{note.number}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+        <figcaption class="mt-3 flex flex-wrap items-start justify-between gap-x-6 gap-y-2">
+          <p class="t-note text-white/55">Hofstetten im Herbst. Die Markierungen bezeichnen lesbare Bereiche des Luftbilds.</p>
+          <PhotoCredit
+            author="Stadt Königsberg i.Bay."
+            license=""
+            href="https://koenigsberg.de/home-rathaus-gemeinde/stadt-gemeinde/stadt-und-stadtteile/hofstetten-mit-buehl/"
+            dark
+          />
+        </figcaption>
+      </figure>
+
+      <ol class="aerial-notes" aria-label="Erläuterungen zum Luftbild">
+        {AERIAL_NOTES.map((note) => (
+          <li id={`aerial-note-${note.id}`} class="aerial-note" data-aerial-note={note.id} data-active={note.number === "01" ? "true" : undefined}>
+            <button class="aerial-note-button" type="button" data-aerial-target={note.id} aria-pressed={note.number === "01" ? "true" : "false"}>
+              <span class="aerial-note-number t-figure">{note.number}</span>
+              <span>
+                <span class="t-label block">{note.label}</span>
+                <span class="t-heading mt-1 block">{note.title}</span>
+              </span>
+            </button>
+            <div class="aerial-note-copy">
+              <p class="t-note text-white/62">{note.text}</p>
+              <SourceRef id={note.sourceId} dark class="mt-2.5" />
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>
+
+<script>
+  const portrait = document.querySelector<HTMLElement>(".aerial-portrait");
+  const targets = portrait?.querySelectorAll<HTMLButtonElement>("[data-aerial-target]");
+  const notes = portrait?.querySelectorAll<HTMLElement>("[data-aerial-note]");
+
+  function selectAerialNote(id: string, moveFocus = false) {
+    targets?.forEach((target) => {
+      const active = target.dataset.aerialTarget === id;
+      target.setAttribute("aria-pressed", String(active));
+    });
+    notes?.forEach((note) => {
+      if (note.dataset.aerialNote === id) note.dataset.active = "true";
+      else delete note.dataset.active;
+    });
+    if (moveFocus) {
+      portrait?.querySelector<HTMLButtonElement>(`.aerial-note-button[data-aerial-target="${id}"]`)?.focus({ preventScroll: true });
+    }
+  }
+
+  targets?.forEach((target) => {
+    target.addEventListener("click", () => selectAerialNote(target.dataset.aerialTarget ?? "", target.classList.contains("aerial-marker")));
+  });
+</script>

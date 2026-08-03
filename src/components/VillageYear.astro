@@ -2,7 +2,7 @@
 import { VILLAGE_YEAR } from "../data/site";
 import SourceRef from "./SourceRef.astro";
 ---
-<section class="band-tight bg-[color:var(--color-paper-deep)]" aria-labelledby="dorfjahr-heading">
+<section id="dorfjahr" class="village-year band scroll-mt-20 bg-[color:var(--color-paper-deep)]" aria-labelledby="dorfjahr-heading">
   <div class="shell">
     <div class="marginal band-head">
       <p class="t-label">Dorfjahr</p>
@@ -13,14 +13,40 @@ import SourceRef from "./SourceRef.astro";
       </div>
     </div>
 
-    <ol role="list" class="mt-10 grid gap-x-8 gap-y-7 sm:mt-12 sm:grid-cols-2 lg:grid-cols-4">
-      {VILLAGE_YEAR.map((entry) => (
-        <li class="border-t border-[color:var(--color-line)] pt-5">
-          <p class="t-label">{entry.date}</p>
-          <h3 class="t-heading mt-2.5">{entry.title}</h3>
-          <p class="t-note mt-1.5 text-[color:var(--color-ink-soft)]">{entry.detail}</p>
-        </li>
-      ))}
-    </ol>
+    <div class="village-year-layout mt-12 sm:mt-16">
+      <div class="year-dial" aria-hidden="true">
+        <svg viewBox="0 0 400 400" role="presentation">
+          <circle class="year-dial-track" cx="200" cy="200" r="154" />
+          <circle class="year-dial-season" cx="200" cy="200" r="154" pathLength="1" />
+        </svg>
+        <span class="year-season year-season-winter">Winter</span>
+        <span class="year-season year-season-spring">Frühjahr</span>
+        <span class="year-season year-season-summer">Sommer</span>
+        <span class="year-season year-season-autumn">Herbst</span>
+        <div class="year-dial-center">
+          <span class="font-serif text-[3.75rem] leading-none font-light">4</span>
+          <span class="t-label mt-2">Bräuche</span>
+          <span class="t-note mt-1 text-[color:var(--color-ink-soft)]">im Lauf des Jahres</span>
+        </div>
+        {VILLAGE_YEAR.map((entry, index) => (
+          <span class="year-dial-marker" style={`--year-x:${entry.dialX}%;--year-y:${entry.dialY}%`}>
+            <span>{String(index + 1).padStart(2, "0")}</span>
+          </span>
+        ))}
+      </div>
+
+      <ol role="list" class="year-list">
+        {VILLAGE_YEAR.map((entry, index) => (
+          <li class="year-entry">
+            <span class="year-entry-number t-figure">{String(index + 1).padStart(2, "0")}</span>
+            <div>
+              <p class="t-label">{entry.season} · {entry.date}</p>
+              <h3 class="t-heading mt-1.5">{entry.title}</h3>
+              <p class="t-note mt-1 text-[color:var(--color-ink-soft)]">{entry.detail}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
   </div>
 </section>
