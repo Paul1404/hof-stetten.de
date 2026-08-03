@@ -20,6 +20,7 @@ RUN addgroup -S app && adduser -S app -G app
 COPY --from=builder --chown=app:app /app/dist      ./dist
 COPY --from=builder --chown=app:app /app/server.ts ./server.ts
 COPY --from=builder --chown=app:app /app/server-paths.ts ./server-paths.ts
+COPY --from=builder --chown=app:app /app/server-origin-auth.ts ./server-origin-auth.ts
 
 USER app
 EXPOSE 4321

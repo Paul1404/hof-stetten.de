@@ -1,5 +1,6 @@
 import { join } from "node:path";
 import { decodeRequestPath, safeFilePath } from "./server-paths";
+import { isOriginAuthorized } from "./server-origin-auth";
 
 const DIST = join(import.meta.dir, "dist");
 const PORT = Number(process.env.PORT) || 4321;
@@ -75,6 +76,13 @@ Bun.serve({
     if (!pathname) {
       return new Response("Bad Request", {
         status: 400,
+        headers: { ...SECURITY_HEADERS, "cache-control": CACHE_NONE },
+      });
+    }
+
+    if (!isOriginAuthorized(req, pathname)) {
+      return new Response("Forbidden", {
+        status: 403,
         headers: { ...SECURITY_HEADERS, "cache-control": CACHE_NONE },
       });
     }
