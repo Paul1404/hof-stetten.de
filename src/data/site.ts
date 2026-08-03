@@ -24,7 +24,7 @@ export const HISTORY = [
     year: "1744",
     title: "Bau der Kapelle St. Anna",
     text: "Die spätbarocke Kapelle erhält ihre heutige Gestalt. Das Sandsteinportal trägt die Jahreszahl 1744, das Relief der Vierzehn Nothelfer wird auf 1751 datiert.",
-    sourceId: "stadt-hofstetten",
+    sourceId: "denkmalliste",
   },
   {
     year: "1870",
@@ -75,7 +75,7 @@ export const AERIAL_NOTES = [
     text: "Der kleine weiße Bau mit Dachreiter steht nahe der Dorfstraße. Kapelle und ehemalige Schule bilden die historische Mitte Hofstettens.",
     x: 44.5,
     y: 52,
-    sourceId: "denkmalliste",
+    sourceId: "stadt-hofstetten",
   },
   {
     id: "flur",
