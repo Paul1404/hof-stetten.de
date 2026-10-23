@@ -8,7 +8,7 @@ on:
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v7
       - uses: oven-sh/setup-bun@v2
@@ -19,4 +19,24 @@ jobs:
       - run: bun run build
       - run: bun test tests
       - run: git diff --check
-      - run: docker build .
+      - name: Build the production image
+        run: docker build --tag hofstetten-smoke .
+      - name: Start the production image with origin protection
+        run: >-
+          docker run --detach --name hofstetten-smoke
+          --publish 127.0.0.1:4321:4321
+          --env ORIGIN_AUTH_SECRET=isolated-smoke-test-secret
+          hofstetten-smoke
+      - name: Wait for container readiness
+        run: >-
+          curl --fail --retry 20 --retry-delay 1 --retry-connrefused
+          --retry-max-time 30 http://127.0.0.1:4321/health.json
+      - name: Verify production pages, assets and access protection
+        env:
+          SMOKE_ORIGIN_SECRET: isolated-smoke-test-secret
+        run: bun run test:smoke -- http://127.0.0.1:4321
+      - name: Container diagnostics and cleanup
+        if: always()
+        run: |
+          docker logs hofstetten-smoke || true
+          docker rm --force hofstetten-smoke || true

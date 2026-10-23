@@ -9,6 +9,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "test": "bun run build && bun test tests",
+    "test:smoke": "bun scripts/smoke.ts",
     "check": "astro check",
     "icons": "bun run scripts/generate-icons.ts",
     "og": "bun run scripts/generate-og-image.ts",

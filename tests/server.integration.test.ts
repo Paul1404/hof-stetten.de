@@ -10,7 +10,7 @@ const processEnvironment = Object.fromEntries(
 beforeAll(async () => {
   server = Bun.spawn(["bun", "run", "server.ts"], {
     cwd: import.meta.dir + "/..",
-    env: { ...processEnvironment, HOST: "127.0.0.1", PORT: String(port) },
+    env: { ...processEnvironment, HOST: "127.0.0.1", PORT: String(port), ORIGIN_AUTH_SECRET: "" },
     stdout: "ignore",
     stderr: "pipe",
   });
