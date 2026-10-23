@@ -24,6 +24,10 @@ It uses Astro, Tailwind CSS, Bun, static output, Docker, and Railway. It has no 
 - Preserve static output, accessibility, responsive images, and reduced-motion behavior.
 - Reuse the established editorial design rather than adding generic decorative sections.
 - Verify image licensing, acquisition source, and attribution.
+- The public `www.hof-stetten.de` hostname points directly to Railway. GET/HEAD
+  requests must redirect to the canonical apex before origin authentication,
+  without serving protected content. Test this with the origin secret enabled
+  and no verification header; the apex origin still requires verification.
 
 ## Commands
 

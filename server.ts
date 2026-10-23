@@ -80,6 +80,19 @@ Bun.serve({
       });
     }
 
+    // Public www traffic reaches Railway without CloudFront's private header.
+    // Redirect it without serving any protected origin content.
+    if (url.hostname === "www.hof-stetten.de" && (req.method === "GET" || req.method === "HEAD")) {
+      return new Response(null, {
+        status: 308,
+        headers: {
+          ...SECURITY_HEADERS,
+          "cache-control": CACHE_DAY,
+          location: `https://hof-stetten.de${url.pathname}${url.search}`,
+        },
+      });
+    }
+
     if (!isOriginAuthorized(req, pathname)) {
       return new Response("Forbidden", {
         status: 403,
@@ -94,17 +107,6 @@ Bun.serve({
           ...SECURITY_HEADERS,
           allow: "GET, HEAD",
           "cache-control": CACHE_NONE,
-        },
-      });
-    }
-
-    if (url.hostname === "www.hof-stetten.de") {
-      return new Response(null, {
-        status: 308,
-        headers: {
-          ...SECURITY_HEADERS,
-          "cache-control": CACHE_DAY,
-          location: `https://hof-stetten.de${url.pathname}${url.search}`,
         },
       });
     }
