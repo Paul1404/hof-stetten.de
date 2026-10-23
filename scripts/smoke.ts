@@ -103,7 +103,12 @@ export async function smokeSite(base: string, secret: string) {
   assert((await request("/", { method: "POST" })).status === 405, "Unsupported methods must return 405");
   assert((await get("/%2e%2e%2fserver.ts")).status === 404, "Encoded traversal was not rejected");
   assert((await get("/%E0%A4%A")).status === 400, "Malformed encoding must return 400");
-  const canonical = await request("/quellen?from=smoke", { headers: { host: "www.hof-stetten.de" } });
+  // Public www traffic does not carry the private origin verification header.
+  const canonical = await fetch(new URL("/quellen?from=smoke", origin), {
+    headers: { host: "www.hof-stetten.de" },
+    redirect: "manual",
+    signal: AbortSignal.timeout(TIMEOUT_MS),
+  });
   assert(canonical.status === 308, "www host must redirect permanently");
   assert(canonical.headers.get("location") === "https://hof-stetten.de/quellen?from=smoke", "Canonical redirect lost path or query");
   return { pages, assets };
