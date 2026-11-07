@@ -36,7 +36,7 @@ jobs:
           hofstetten-smoke
       - name: Wait for container readiness
         run: >-
-          curl --fail --retry 20 --retry-delay 1 --retry-connrefused
+          curl --fail --retry 20 --retry-delay 1 --retry-all-errors --max-time 2
           --retry-max-time 30 http://127.0.0.1:4321/health.json
       - name: Verify production pages, assets and access protection
         env:
