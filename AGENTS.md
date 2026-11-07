@@ -34,6 +34,9 @@ It uses Astro, Tailwind CSS, Bun, static output, Docker, and Railway. It has no 
 - `bun run check`: Astro validation
 - `bun run test`: tests
 - `bun run build`: production build
+- CI builds the production image once, copies its `dist` for the host test suite,
+  and runs the same image for the container smoke. Keep these checks on the
+  image output instead of adding a second site build.
 - `bun run test` builds first, then checks the real server and crawls internal
   pages and referenced assets, including responsive images and CSS fonts.
 - `SMOKE_ORIGIN_SECRET=<test secret> bun run test:smoke -- <base URL>` runs
