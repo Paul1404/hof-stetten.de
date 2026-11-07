@@ -48,7 +48,7 @@ export async function smokeSite(base: string, secret: string) {
     const extension = parent.pathname.split(".").pop()?.toLowerCase();
     if (extension === "css") assert(type.includes("text/css"), `${path} is not served as CSS`);
     if (extension === "js" || extension === "mjs") assert(type.includes("javascript"), `${path} is not served as JavaScript`);
-    if (["webp", "png", "jpg", "jpeg", "svg", "ico"].includes(extension ?? "")) {
+    if (["avif", "webp", "png", "jpg", "jpeg", "svg", "ico"].includes(extension ?? "")) {
       assert(type.startsWith("image/"), `${path} is not served as an image`);
     }
     if (extension === "woff2" || extension === "woff") assert(type.includes("font"), `${path} is not served as a font`);
