@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: "2010-09-09"
-Description: HTTPS apex delivery for hof-stetten.de with Railway as the origin
+Description: HTTPS delivery for hof-stetten.de with Vertex as the protected origin
 
 Parameters:
   HostedZoneId:
@@ -11,31 +11,57 @@ Parameters:
     Default: hof-stetten.de
     Description: Apex domain served by CloudFront
     AllowedPattern: "^[a-z0-9.-]+$"
-  RailwayOriginDomain:
+  VertexOriginDomain:
     Type: String
-    Default: hof-stettende-production.up.railway.app
-    Description: Railway service domain used as the CloudFront origin
-    AllowedPattern: "^[a-z0-9.-]+\\.up\\.railway\\.app$"
-  WwwRailwayTarget:
+    Default: hof-stetten-origin.rke2.pdcd.net
+    Description: Protected Vertex origin with a valid HTTPS certificate
+    AllowedPattern: "^[a-z0-9.-]+$"
+  OriginVerifySecret:
     Type: String
-    Default: xsgvluat.up.railway.app
-    Description: Railway CNAME target for www
-    AllowedPattern: "^[a-z0-9]+\\.up\\.railway\\.app$"
-  WwwRailwayVerification:
-    Type: String
-    Default: railway-verify=a816667f0e7e43336e5d37abb47619e004c65abea0f6cd49dd88566da71c2a06
-    Description: Railway ownership verification value for www
-    AllowedPattern: "^railway-verify=[a-f0-9]{64}$"
+    NoEcho: true
+    MinLength: 1
+    Description: Existing CloudFront origin verification header value
 
 Resources:
   ApexCertificate:
     Type: AWS::CertificateManager::Certificate
     Properties:
       DomainName: !Ref DomainName
+      SubjectAlternativeNames:
+        - !Sub "www.${DomainName}"
       DomainValidationOptions:
         - DomainName: !Ref DomainName
           HostedZoneId: !Ref HostedZoneId
+        - DomainName: !Sub "www.${DomainName}"
+          HostedZoneId: !Ref HostedZoneId
       ValidationMethod: DNS
+
+  WwwRedirect:
+    Type: AWS::CloudFront::Function
+    Properties:
+      Name: !Sub "${AWS::StackName}-www-redirect"
+      AutoPublish: true
+      FunctionConfig:
+        Comment: Redirect the www hostname to the canonical apex
+        Runtime: cloudfront-js-2.0
+      FunctionCode: |
+        function handler(event) {
+          var request = event.request;
+          if (request.headers.host.value !== 'www.hof-stetten.de' ||
+              (request.method !== 'GET' && request.method !== 'HEAD')) return request;
+          var parts = [];
+          Object.keys(request.querystring).forEach(function (key) {
+            var entry = request.querystring[key];
+            var values = entry.multiValue || [entry];
+            values.forEach(function (item) {
+              parts.push(key + (item.value ? '=' + item.value : ''));
+            });
+          });
+          var location = 'https://hof-stetten.de' + request.uri +
+            (parts.length ? '?' + parts.join('&') : '');
+          return { statusCode: 308, statusDescription: 'Permanent Redirect',
+            headers: { location: { value: location }, 'cache-control': { value: 'public, max-age=86400' } } };
+        }
 
   ApexDistribution:
     Type: AWS::CloudFront::Distribution
@@ -43,7 +69,8 @@ Resources:
       DistributionConfig:
         Aliases:
           - !Ref DomainName
-        Comment: !Sub "${DomainName} apex to Railway"
+          - !Sub "www.${DomainName}"
+        Comment: !Sub "${DomainName} to Vertex"
         DefaultCacheBehavior:
           AllowedMethods:
             - DELETE
@@ -61,12 +88,18 @@ Resources:
           OriginRequestPolicyId: b689b0a8-53d0-40ab-baf2-68738e2966ac
           TargetOriginId: RailwayOrigin
           ViewerProtocolPolicy: redirect-to-https
+          FunctionAssociations:
+            - EventType: viewer-request
+              FunctionARN: !GetAtt WwwRedirect.FunctionARN
         Enabled: true
         HttpVersion: http2and3
         IPV6Enabled: true
         Origins:
-          - DomainName: !Ref RailwayOriginDomain
+          - DomainName: !Ref VertexOriginDomain
             Id: RailwayOrigin
+            OriginCustomHeaders:
+              - HeaderName: X-Origin-Verify
+                HeaderValue: !Ref OriginVerifySecret
             CustomOriginConfig:
               HTTPPort: 80
               HTTPSPort: 443
@@ -99,15 +132,18 @@ Resources:
             EvaluateTargetHealth: false
             HostedZoneId: Z2FDTNDATAQYW2
         - Name: !Sub "www.${DomainName}"
-          Type: CNAME
-          TTL: 300
-          ResourceRecords:
-            - !Ref WwwRailwayTarget
-        - Name: !Sub "_railway-verify.www.${DomainName}"
-          Type: TXT
-          TTL: 300
-          ResourceRecords:
-            - !Sub '"${WwwRailwayVerification}"'
+          Type: A
+          AliasTarget:
+            DNSName: !GetAtt ApexDistribution.DomainName
+            EvaluateTargetHealth: false
+            HostedZoneId: Z2FDTNDATAQYW2
+        - Name: !Sub "www.${DomainName}"
+          Type: AAAA
+          AliasTarget:
+            DNSName: !GetAtt ApexDistribution.DomainName
+            EvaluateTargetHealth: false
+            HostedZoneId: Z2FDTNDATAQYW2
+
 Outputs:
   DistributionId:
     Description: CloudFront distribution ID for the apex domain
