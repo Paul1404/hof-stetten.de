@@ -15,7 +15,7 @@ This is the canonical instruction file for this repository. Claude Code loads it
 
 This is a static, editorial local-history site for Hofstetten.
 
-It uses Astro, Tailwind CSS, Bun, static output, Docker, and Railway. It has no database, CMS, or client framework.
+It uses Astro, Tailwind CSS, Bun, static output, Docker, and Vertex RKE2 with Fleet. It has no database, CMS, or client framework.
 
 ## Project rules
 
@@ -24,10 +24,10 @@ It uses Astro, Tailwind CSS, Bun, static output, Docker, and Railway. It has no 
 - Preserve static output, accessibility, responsive images, and reduced-motion behavior.
 - Reuse the established editorial design rather than adding generic decorative sections.
 - Verify image licensing, acquisition source, and attribution.
-- The public `www.hof-stetten.de` hostname points directly to Railway. GET/HEAD
-  requests must redirect to the canonical apex before origin authentication,
-  without serving protected content. Test this with the origin secret enabled
-  and no verification header; the apex origin still requires verification.
+- CloudFront serves the apex and `www.hof-stetten.de`. Its viewer-request
+  function redirects GET/HEAD requests on www to the canonical apex, preserving
+  path and query. The Vertex origin requires the verification header. Test the
+  redirect publicly and the origin with and without that header.
 
 ## Commands
 
@@ -79,7 +79,7 @@ an advisory merely to make the gate pass.
 
 ## Main-only branch lifecycle and security reporting
 
-`main` is the only retained local and remote branch for this active Railway
+`main` is the only retained local and remote branch for this active
 repository. Temporary PR branches are allowed only while work is in progress.
 Keep required checks and branch protections; never bypass them to avoid a branch.
 Before finishing, merge validated work, delete the remote and local task branches,
@@ -98,14 +98,18 @@ credentials, production records and personal data from public issues and commits
 
 ## Production security gates
 
-Railway waits for successful GitHub workflows on `main`. Keep an always-running
-push workflow and do not cancel its main-branch runs. PR branch cleanup never
+Verified main-branch images are published to GHCR after CI and the image scan;
+Vertex Fleet promotes the published image digest. Keep an always-running push
+workflow and do not cancel its main-branch runs. PR branch cleanup never
 justifies bypassing CI. Public repositories also enforce CodeQL results on main.
-Container security builds the production image and scans OS and library packages.
-Retain the complete report. Fixable HIGH/CRITICAL findings block delivery;
+CI builds the production image once and runs its scan and functional checks in
+the same job, alongside separate source checks. It publishes that image only
+after both jobs pass. The scheduled
+container security workflow independently rebuilds and scans. Retain the full
+scan report. Fixable HIGH/CRITICAL findings block delivery;
 upstream-unfixed findings remain visible and require explicit review. Do not add
 blanket scanner ignores or weaken these gates to make a release pass.
 
 Runtime APK security upgrades are keyed to `RAILWAY_GIT_COMMIT_SHA` so a new
-release cannot reuse an outdated package-upgrade layer from Railway build cache.
+release cannot reuse an outdated package-upgrade layer from the build cache.
 Keep the commit build argument in the container scan workflow as well.

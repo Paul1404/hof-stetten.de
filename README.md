@@ -10,7 +10,7 @@ Die Website erzählt Ortsgeschichte, Landschaft, St. Anna und Dorfleben als stat
 - Tailwind CSS 4
 - Bun als Paketmanager und Produktionsserver
 - Responsive Bilder über `astro:assets`
-- Docker-Deployment auf Railway
+- Docker-Deployment auf Vertex RKE2 mit Fleet
 - GitHub Actions mit `astro check` und Produktions-Build
 - Keine Datenbank, kein CMS, keine Client-Bibliothek
 - Keine Cookies und derzeit keine Reichweitenmessung
@@ -41,6 +41,6 @@ Die Recherchegrundlagen stehen auf `/quellen`. Alle Fotografien stammen aus Wiki
 
 ## Deployment
 
-Das Dockerfile baut die statische Ausgabe und liefert sie über einen kleinen Bun-Server mit Sicherheits- und Cache-Headern aus. Railway prüft `/health.json`.
+Das Dockerfile baut die statische Ausgabe und liefert sie über einen kleinen Bun-Server mit Sicherheits- und Cache-Headern aus. Kubernetes prüft `/health.json`.
 
-Die Anwendung läuft auf Railway. Da Route 53 keinen CNAME am Zonen-Apex unterstützt, liefert CloudFront `hof-stetten.de` per A- und AAAA-Alias aus und verwendet die Railway-Domain als Ursprung. `www.hof-stetten.de` zeigt direkt auf Railway. Die reproduzierbare AWS-Konfiguration liegt in `infra/cloudfront.yaml`.
+Die Anwendung läuft auf Vertex RKE2 und wird von Fleet verwaltet. CloudFront liefert `hof-stetten.de` aus und schützt den Vertex-Ursprung mit einem Verifizierungsheader. `www.hof-stetten.de` leitet am CloudFront-Edge auf die Hauptdomain um. Die AWS-Konfiguration liegt in `infra/cloudfront.yaml`; die Deployment-Manifeste liegen im privaten Repository `vertex-fleet`.
